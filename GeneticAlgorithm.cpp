@@ -158,9 +158,7 @@ public:
         getFitness();
         sort(population.begin(), population.end(),sortByFitness); //Sort by fitness
         Member bestIndividual = population.back();
-        if(bestIndividual.fitness != 1.0) {
-            reproduction();
-        }
+        reproduction();
         bestFitness = bestIndividual.fitness;
         return bestIndividual.gene;
     }

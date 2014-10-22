@@ -223,7 +223,7 @@
 		E9A5BC8B0A33819900AD9F03 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -254,6 +254,7 @@
 					dynamic_lookup,
 				);
 				PRODUCT_NAME = simpleGA;
+				VALID_ARCHS = "i386 x86_64";
 				ZERO_LINK = YES;
 			};
 			name = Development;
@@ -261,7 +262,7 @@
 		E9A5BC8C0A33819900AD9F03 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -290,6 +291,7 @@
 					dynamic_lookup,
 				);
 				PRODUCT_NAME = simpleGA;
+				VALID_ARCHS = "i386 x86_64";
 				ZERO_LINK = NO;
 			};
 			name = Deployment;
@@ -297,7 +299,7 @@
 		E9A5BC8D0A33819900AD9F03 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_EXTENSION = pd_darwin;
@@ -322,13 +324,14 @@
 					"$(PDApp)/bin/pd",
 				);
 				PRODUCT_NAME = simpleGA;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Default;
 		};
 		E9A5BC8F0A33819900AD9F03 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -356,7 +359,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = simpleGA;
 				SECTORDER_FLAGS = "";
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 x86_64";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -370,7 +373,7 @@
 		E9A5BC900A33819900AD9F03 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -396,7 +399,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = simpleGA;
 				SECTORDER_FLAGS = "";
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 x86_64";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -410,7 +413,7 @@
 		E9A5BC910A33819900AD9F03 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/Frameworks/Accelerate.framework/Versions/A/Frameworks",
@@ -431,7 +434,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = simpleGA;
 				SECTORDER_FLAGS = "";
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 x86_64";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -444,7 +447,7 @@
 		E9A5BC930A33819900AD9F03 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = i386;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				FLEXTINCLUDE = /usr/local/include/flext;
 				FLEXTLIB = /usr/local/lib;
@@ -463,7 +466,7 @@
 				LIBRARY_SEARCH_PATHS = "$(FLEXTLIB)";
 				PD = "/Applications/Pd-extended.app/Contents/Resources";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 x86_64";
 				maxsdk = "/Users/carthach/Dev/git/max6-sdk/c74support";
 			};
 			name = Development;
@@ -471,7 +474,7 @@
 		E9A5BC940A33819900AD9F03 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = i386;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				FLEXTINCLUDE = /usr/local/include/flext;
 				FLEXTLIB = /usr/local/lib;
@@ -491,7 +494,7 @@
 				LIBRARY_SEARCH_PATHS = "$(FLEXTLIB)";
 				PD = "/Applications/Pd-extended.app/Contents/Resources";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 x86_64";
 				maxsdk = "/Users/carthach/Dev/git/max6-sdk/c74support";
 			};
 			name = Deployment;
@@ -499,7 +502,7 @@
 		E9A5BC950A33819900AD9F03 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = i386;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				FLEXTINCLUDE = /usr/local/include/flext;
 				FLEXTLIB = /usr/local/lib;
@@ -510,7 +513,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(FLEXTLIB)";
 				PD = "/Applications/Pd-extended.app/Contents/Resources";
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 x86_64";
 				maxsdk = "/Users/carthach/Dev/git/max6-sdk/c74support";
 			};
 			name = Default;

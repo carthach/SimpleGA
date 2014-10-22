@@ -21,6 +21,7 @@
 #include <flext.h>
 #include <iostream>
 #include <vector>
+#include <string>
 #include "geneticAlgorithm.cpp"
 
 
@@ -46,9 +47,11 @@ protected:
     void m_bang();
     void m_help();
     void m_string(int argc, const t_atom* argv);
+    void m_targetFitness(float targetFitness);
 
     int populationSize;
     float mutationRate;
+    float targetFitness;
     
 private:
     // define the _static_ class setup function
@@ -56,6 +59,7 @@ private:
     
     FLEXT_CALLBACK_V(m_list)
     FLEXT_CALLBACK_V(m_string)
+    FLEXT_CALLBACK_F(m_targetFitness)
     FLEXT_CALLBACK(m_bang)
     FLEXT_CALLBACK(m_help)
     
@@ -76,6 +80,8 @@ simpleGA::simpleGA(int argc, const t_atom* argv)
     
     populationSize = 100;
     mutationRate = 0.1;
+    
+    targetFitness = 1.0;
 
     if(argc == 2) {
         populationSize = GetAInt(argv[0]);
@@ -92,7 +98,7 @@ void simpleGA::setup(t_classid c)
     FLEXT_CADDMETHOD(c, 0, m_list);
     FLEXT_CADDBANG(c, 0, m_bang);
     
-    
+    FLEXT_CADDMETHOD_(c,0,"targetFitness",m_targetFitness);
     FLEXT_CADDMETHOD_(c,0,"help",m_help);
     FLEXT_CADDMETHOD_(c,0,"string",m_string);
 }
@@ -137,7 +143,6 @@ void simpleGA::m_bang()
         post("No target string");
         return;
     }
-    
     std::vector<int> bestMember = geneticAlgorithm.evolve();
     
     AtomList myList(bestMember.size());
@@ -151,14 +156,19 @@ void simpleGA::m_bang()
         string s;
         for(int i = 0; i< bestMember.size(); ++i)
             s.push_back(bestMember[i]);
-        
         ToOutString(0, s.c_str());
     }
     
-    ToOutFloat(1, geneticAlgorithm.bestFitness);
-
-    if(geneticAlgorithm.bestFitness == 1.0f)
+    if(geneticAlgorithm.bestFitness >= targetFitness)
         ToOutBang(2);
+    
+    ToOutFloat(1, geneticAlgorithm.bestFitness);
+}
+
+void simpleGA::m_targetFitness(float targetFitness)
+{
+    this->targetFitness = targetFitness;
+    post("Target Fitness changed");
 }
 
 void simpleGA::m_help()
