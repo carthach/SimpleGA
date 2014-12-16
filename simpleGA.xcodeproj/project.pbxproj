@@ -11,6 +11,8 @@
 		07A1FE1E1917C50E00687664 /* vecLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A1FE1B1917C48A00687664 /* vecLib.framework */; };
 		07A1FE211917C53A00687664 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A1FE1F1917C53A00687664 /* MaxAPI.framework */; };
 		07A1FE221917C53A00687664 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A1FE201917C53A00687664 /* MaxAudioAPI.framework */; };
+		07AE54BE1A403D920015E392 /* simpleGA.pd_darwin in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2AAC09D05546B4700DB518D /* simpleGA.pd_darwin */; };
+		07AE54C01A403E410015E392 /* simpleGA.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9974E53077083C700206F68 /* simpleGA.mxo */; };
 		07B0214319EAB88700B9F1F8 /* simpleGA.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9974E53077083C700206F68 /* simpleGA.mxo */; };
 		07BF559B1A3F3B91004A0F6A /* SwapDistance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BF55991A3F3B91004A0F6A /* SwapDistance.cpp */; };
 		07BF559C1A3F3B91004A0F6A /* SwapDistance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BF55991A3F3B91004A0F6A /* SwapDistance.cpp */; };
@@ -22,6 +24,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		07AE54BD1A403D6B0015E392 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = $SRCROOT/bin;
+			dstSubfolderSpec = 0;
+			files = (
+				07AE54BE1A403D920015E392 /* simpleGA.pd_darwin in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07AE54BF1A403E370015E392 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = $SRCROOT/bin;
+			dstSubfolderSpec = 0;
+			files = (
+				07AE54C01A403E410015E392 /* simpleGA.mxo in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		07FDC1B419E703E600F4DBE2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -144,6 +166,7 @@
 				D2AAC09B05546B4700DB518D /* Frameworks */,
 				D2AAC09A05546B4700DB518D /* Sources */,
 				07FDC1B419E703E600F4DBE2 /* CopyFiles */,
+				07AE54BD1A403D6B0015E392 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -162,6 +185,7 @@
 				E9974E50077083C700206F68 /* Sources */,
 				E9974E51077083C700206F68 /* Frameworks */,
 				E9974EC207708C9300206F68 /* CopyFiles */,
+				07AE54BF1A403E370015E392 /* CopyFiles */,
 			);
 			buildRules = (
 			);

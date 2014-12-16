@@ -4,11 +4,11 @@
 		"appversion" : 		{
 			"major" : 6,
 			"minor" : 1,
-			"revision" : 8,
+			"revision" : 9,
 			"architecture" : "x86"
 		}
 ,
-		"rect" : [ 100.0, 100.0, 719.0, 554.0 ],
+		"rect" : [ 234.0, 109.0, 876.0, 676.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -29,6 +29,50 @@
 		"tags" : "",
 		"boxes" : [ 			{
 				"box" : 				{
+					"bgcolor" : [ 0.4, 0.8, 1.0, 1.0 ],
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"frgb" : 0.0,
+					"id" : "obj-14",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 519.0, 308.0, 171.0, 33.0 ],
+					"text" : "Change the distance measure used (default: hamming)"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-11",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 399.0, 340.0, 89.0, 18.0 ],
+					"text" : "measure swap"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-8",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 399.0, 308.0, 110.0, 18.0 ],
+					"text" : "measure hamming"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"bgcolor" : [ 1.0, 1.0, 0.0, 1.0 ],
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
@@ -38,7 +82,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 145.0, 298.5, 192.0, 33.0 ],
+					"patching_rect" : [ 211.0, 392.0, 192.0, 33.0 ],
 					"text" : "Population Size (default:100) and Mutation Rate (default:0.1)"
 				}
 
@@ -69,7 +113,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 145.0, 350.0, 192.0, 20.0 ],
+					"patching_rect" : [ 211.0, 443.5, 192.0, 20.0 ],
 					"text" : "Bang when fitness hits 1"
 				}
 
@@ -84,7 +128,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 145.0, 391.0, 192.0, 20.0 ],
+					"patching_rect" : [ 211.0, 484.5, 192.0, 20.0 ],
 					"text" : "Current best fitness"
 				}
 
@@ -99,7 +143,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 145.0, 426.0, 192.0, 20.0 ],
+					"patching_rect" : [ 211.0, 519.5, 192.0, 20.0 ],
 					"text" : "Genome of the fittest individual"
 				}
 
@@ -216,7 +260,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 107.0, 350.0, 20.0, 20.0 ]
+					"patching_rect" : [ 160.0, 443.5, 20.0, 20.0 ]
 				}
 
 			}
@@ -230,7 +274,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 64.0, 391.0, 50.0, 20.0 ]
+					"patching_rect" : [ 90.5, 484.5, 50.0, 20.0 ]
 				}
 
 			}
@@ -267,7 +311,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 21.0, 426.0, 73.0, 20.0 ],
+					"patching_rect" : [ 21.0, 519.5, 73.0, 20.0 ],
 					"text" : "print bestFit"
 				}
 
@@ -309,8 +353,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "list", "float", "symbol" ],
-					"patching_rect" : [ 21.0, 305.0, 105.0, 20.0 ],
-					"text" : "simpleGA 100 0.1"
+					"patching_rect" : [ 21.0, 392.0, 158.0, 20.0 ],
+					"text" : "simpleGA 100 0.1 hamming"
 				}
 
 			}
@@ -339,6 +383,16 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"midpoints" : [ 408.5, 372.0, 30.5, 372.0 ],
+					"source" : [ "obj-11", 0 ]
 				}
 
 			}
@@ -396,6 +450,16 @@
 					"disabled" : 0,
 					"hidden" : 0,
 					"source" : [ "obj-7", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"disabled" : 0,
+					"hidden" : 0,
+					"midpoints" : [ 408.5, 334.0, 30.5, 334.0 ],
+					"source" : [ "obj-8", 0 ]
 				}
 
 			}

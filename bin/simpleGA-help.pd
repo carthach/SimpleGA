@@ -1,0 +1,40 @@
+#N canvas 291 158 847 508 10;
+#X text 26 25 SimpleGA - A very simple Genetic Algorithm for Max/MSP
+and Pd By Cárthach Ó Nuanáin - github.com/carthach;
+#X obj 26 138 metro 200;
+#X obj 26 97 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 60 97 stop;
+#X floatatom 127 97 5 0 0 0 - - -;
+#X obj 26 461 print bestFit;
+#X floatatom 96 420 5 0 0 0 - - -;
+#X obj 167 388 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 251 98 50 15 19 15 35 6 15 36 24 654;
+#X msg 301 144 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+#X msg 361 194 string Survival of the Fittest;
+#X text 444 86 Numerical string - the max and min determines the range
+for the random seeding of the population (in this case 654);
+#X text 514 144 Bit string - the max is 1;
+#X text 569 195 Prepend alphanumerical strings with "string";
+#X text 194 384 Bang when fitness hits 1;
+#X text 194 418 Current best fitness;
+#X text 192 458 Genome of the fittest individual;
+#X obj 26 346 simpleGA 100 0.1 hamming;
+#X text 193 341 Population Size (default:100) Mutation Rate (default:0.1)
+Distance Measure (default: hamming);
+#X msg 360 257 measure hamming;
+#X msg 360 283 measure swap;
+#X text 473 252 Change the distance measure used;
+#X connect 1 0 17 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 1;
+#X connect 8 0 17 0;
+#X connect 9 0 17 0;
+#X connect 10 0 17 0;
+#X connect 17 0 5 0;
+#X connect 17 1 6 0;
+#X connect 17 2 7 0;
+#X connect 19 0 17 0;
+#X connect 20 0 17 0;
