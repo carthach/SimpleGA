@@ -7,10 +7,7 @@
 //
 #include <vector>
 #include <algorithm>
-
-#ifndef FLEXT_THREADS
-#define FLEXT_THREADS
-#endif
+#include <SwapDistance.h>
 
 using namespace std;
 
@@ -28,27 +25,34 @@ class GeneticAlgorithm {
     vector<Member> population;
     vector<Member> matingPool;
     
+    int min, range;
+public:
+    enum MEASURE {
+        HAMMING,
+        SWAP
+    };
+    
     int populationSize;
     int geneLength;
     float mutationRate = 0.1;
     
-    int min, range;
+    SwapDistance swap;
     
-public:
+    MEASURE measure;
+    
     float bestFitness;
     vector<int> targetString;
     GATYPE gaType;
     
-    GeneticAlgorithm()
-    {
-        
-    }
-    
-    void init(int populationSize, vector<int> targetString, GATYPE gaType)
+    //Our init function for constructors
+    void init(int populationSize, vector<int> targetString, GATYPE gaType, MEASURE measure)
     {
         this->populationSize = populationSize;
         this->targetString = targetString;
         this->gaType = gaType;
+        this->measure = measure;
+        
+        
         geneLength = targetString.size();
         
         if(gaType == ALPHANUMERICAL) {
@@ -59,23 +63,31 @@ public:
         seedPopulation();
     }
     
-    GeneticAlgorithm(int populationSize, vector<int> targetString, GATYPE gaType)
+    //Our default constructor
+    GeneticAlgorithm()
     {
-        init(populationSize,targetString, gaType);
+        init(100, vector<int>(0), NUMERICAL, HAMMING );
     }
     
-    GeneticAlgorithm(int populationSize, vector<int> targetString, GATYPE gaType, int min, int max)
+    //For alphanumerical
+    GeneticAlgorithm(int populationSize, vector<int> targetString, GATYPE gaType, MEASURE measure)
+    {
+        init(populationSize,targetString, gaType, measure);
+    }
+    
+    //For numerical
+    GeneticAlgorithm(int populationSize, vector<int> targetString, GATYPE gaType, MEASURE measure, int min, int max)
     {
         this->min = min;
         range = (max - min) + 1;
-        init(populationSize,targetString, gaType);
+        init(populationSize,targetString, gaType, measure);
     }
     
     void seedPopulation()
     {
         for(int i=0; i<populationSize; i++) {
             vector<int> gene;
-
+            
             if(gaType == ALPHANUMERICAL) {
                 for(int j=0;j<geneLength; j++) {
                     gene.push_back( ' ' + rand()%94);
@@ -102,16 +114,12 @@ public:
         
         Member child;
         
-        std::cout << "Here\n";
-        
         for(int i=0; i<spos;i++)
             child.gene.push_back(parent1->gene[i]);
         for(int i=spos; i<geneLength;i++)
             child.gene.push_back(parent2->gene[i]);
         child.fitness = 0.0;
         
-        std::cout << "There\n";        
-    
         return child;
     }
     
@@ -163,11 +171,21 @@ public:
         return bestIndividual.gene;
     }
     
-    float getFitness(vector<int> memberGene, vector<int> targetGene)
+    float getFitness(const vector<int> &memberGene, const vector<int> &targetGene)
+    {
+        if(measure == HAMMING)
+            return getHamming(memberGene, targetGene);
+        else {
+            float fitness = (float)swap.getDistance(memberGene, targetGene);
+            return 1.0 / fitness;
+        }
+    }
+    
+    float getHamming(const vector<int> &stringA, const vector<int> &stringB)
     {
         float fitness = 0.0;
         for(int i=0;i<geneLength;i++)
-            if(memberGene[i] == targetGene[i])
+            if(stringA[i] == stringB[i])
                 fitness += 1.0;
         fitness /= (float)geneLength;
         return fitness;

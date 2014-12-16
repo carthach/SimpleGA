@@ -22,7 +22,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "geneticAlgorithm.cpp"
+#include "GeneticAlgorithm.h"
 
 
 using namespace std;
@@ -48,10 +48,7 @@ protected:
     void m_help();
     void m_string(int argc, const t_atom* argv);
     void m_targetFitness(float targetFitness);
-
-    int populationSize;
-    float mutationRate;
-    float targetFitness;
+    void m_measure(int argc, const t_atom* argv);
     
 private:
     // define the _static_ class setup function
@@ -59,11 +56,13 @@ private:
     
     FLEXT_CALLBACK_V(m_list)
     FLEXT_CALLBACK_V(m_string)
+    FLEXT_CALLBACK_V(m_measure)
     FLEXT_CALLBACK_F(m_targetFitness)
     FLEXT_CALLBACK(m_bang)
     FLEXT_CALLBACK(m_help)
     
     GeneticAlgorithm geneticAlgorithm;
+    float targetFitness;
 };
 
 // instantiate the class (constructor takes no arguments)
@@ -78,15 +77,27 @@ simpleGA::simpleGA(int argc, const t_atom* argv)
     AddOutFloat();
     AddOutBang();
     
-    populationSize = 100;
-    mutationRate = 0.1;
-    
+    geneticAlgorithm.populationSize = 100;
+    geneticAlgorithm.mutationRate = 0.1;
+    geneticAlgorithm.measure = geneticAlgorithm.HAMMING;
     targetFitness = 1.0;
 
-    if(argc == 2) {
-        populationSize = GetAInt(argv[0]);
-        mutationRate = GetAFloat(argv[1]);
+    if(argc == 3) {
+        geneticAlgorithm.populationSize = GetAInt(argv[0]);
+        geneticAlgorithm.mutationRate = GetAFloat(argv[1]);
+        
+        const char* word = GetAString(argv[2]);
+        
+        if(strcmp(word, "swap") == 0) {
+            geneticAlgorithm.measure = geneticAlgorithm.SWAP;
+        }
+        
+        if(strcmp(word, "hamming") == 0)
+        {
+            geneticAlgorithm.measure = geneticAlgorithm.HAMMING;
+        }
     }
+    
 }
 
 void simpleGA::setup(t_classid c)
@@ -100,21 +111,24 @@ void simpleGA::setup(t_classid c)
     
     FLEXT_CADDMETHOD_(c,0,"targetFitness",m_targetFitness);
     FLEXT_CADDMETHOD_(c,0,"help",m_help);
+    FLEXT_CADDMETHOD_(c,0,"measure", m_measure);
     FLEXT_CADDMETHOD_(c,0,"string",m_string);
 }
 
 void simpleGA::m_list(int argc, const t_atom *argv)
 {
-    vector<int> newString;
+    vector<int> newString(argc);
     int min = 0, max =0;
     for(int i=0; i<argc; i++) {
-        newString.push_back(GetAInt(argv[i]));
-        if(newString.back()>max)
-            max = newString.back();
-        if(newString.back()<min)
-            min = newString.back();
+        int val = GetAInt(argv[i]);
+        newString[i] = val;
+        if(val>max)
+            max = val;
+        if(val<min)
+            min = val;
     }
-    geneticAlgorithm = GeneticAlgorithm(100, newString, NUMERICAL, min, max);
+    geneticAlgorithm = GeneticAlgorithm(100, newString, NUMERICAL, geneticAlgorithm.measure, min, max);
+
     post("Number received");
 }
 
@@ -132,9 +146,29 @@ void simpleGA::m_string(int argc, const t_atom *argv)
         if(i < argc-1)
             newString.push_back(' ');
     }
-    geneticAlgorithm = GeneticAlgorithm(100, newString, ALPHANUMERICAL);
+    geneticAlgorithm = GeneticAlgorithm(100, newString, ALPHANUMERICAL, geneticAlgorithm.measure);
     
     post("Alphanumeric string received");
+}
+
+void simpleGA::m_measure(int argc, const t_atom *argv)
+{
+    if(argc == 1) {
+        const char* word = GetAString(argv[0]);
+
+        if(strcmp(word, "swap") == 0) {
+            geneticAlgorithm.measure = geneticAlgorithm.SWAP;
+            post("Compute fitness with swap distance");
+        }
+        
+        if(strcmp(word, "hamming") == 0)
+        {
+            geneticAlgorithm.measure = geneticAlgorithm.HAMMING;
+            post("Compute fitness with hamming distance");
+        }
+
+    }
+    
 }
 
 void simpleGA::m_bang()
@@ -144,7 +178,6 @@ void simpleGA::m_bang()
         return;
     }
     std::vector<int> bestMember = geneticAlgorithm.evolve();
-    
     AtomList myList(bestMember.size());
     
     if(geneticAlgorithm.gaType == NUMERICAL) {
