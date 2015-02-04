@@ -202,6 +202,7 @@ void simpleGA::m_bang()
         ToOutBang(2);
     
     ToOutFloat(1, geneticAlgorithm.bestFitness);
+    ToOutFloat(3, geneticAlgorithm.bestDistance);
 }
 
 void simpleGA::m_targetFitness(float targetFitness)

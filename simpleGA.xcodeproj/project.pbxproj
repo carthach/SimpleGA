@@ -14,6 +14,7 @@
 		07AE54BE1A403D920015E392 /* simpleGA.pd_darwin in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2AAC09D05546B4700DB518D /* simpleGA.pd_darwin */; };
 		07AE54C01A403E410015E392 /* simpleGA.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9974E53077083C700206F68 /* simpleGA.mxo */; };
 		07B0214319EAB88700B9F1F8 /* simpleGA.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9974E53077083C700206F68 /* simpleGA.mxo */; };
+		07B297E81A829B6D001E85B2 /* simpleGA.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9974E53077083C700206F68 /* simpleGA.mxo */; };
 		07BF559B1A3F3B91004A0F6A /* SwapDistance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BF55991A3F3B91004A0F6A /* SwapDistance.cpp */; };
 		07BF559C1A3F3B91004A0F6A /* SwapDistance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BF55991A3F3B91004A0F6A /* SwapDistance.cpp */; };
 		07BF559D1A3F3B91004A0F6A /* SwapDistance.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BF559A1A3F3B91004A0F6A /* SwapDistance.h */; };
@@ -41,6 +42,16 @@
 			dstSubfolderSpec = 0;
 			files = (
 				07AE54C01A403E410015E392 /* simpleGA.mxo in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07B297E71A829B66001E85B2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "/Users/carthach/Music/Ableton/User Library/Presets/Instruments/Max Instrument/Mine/GenDrum";
+			dstSubfolderSpec = 0;
+			files = (
+				07B297E81A829B6D001E85B2 /* simpleGA.mxo in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +197,7 @@
 				E9974E51077083C700206F68 /* Frameworks */,
 				E9974EC207708C9300206F68 /* CopyFiles */,
 				07AE54BF1A403E370015E392 /* CopyFiles */,
+				07B297E71A829B66001E85B2 /* CopyFiles */,
 			);
 			buildRules = (
 			);

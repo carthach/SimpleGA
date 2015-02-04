@@ -14,6 +14,7 @@ using namespace std;
 struct Member {
     vector<int> gene;
     float fitness;
+    int distance;
 };
 
 enum GATYPE {
@@ -41,6 +42,7 @@ public:
     MEASURE measure;
     
     float bestFitness;
+    int bestDistance;
     vector<int> targetString;
     GATYPE gaType;
     
@@ -157,7 +159,7 @@ public:
     void getFitness()
     {
         for(int i=0; i<populationSize;i++)
-            population[i].fitness = getFitness(population[i].gene, targetString);
+            population[i].fitness = getFitness(population[i].gene, targetString, &population[i].distance);
     }
     
     static bool sortByFitness(const Member &lhs, const Member &rhs) { return lhs.fitness < rhs.fitness; }
@@ -169,38 +171,61 @@ public:
         Member bestIndividual = population.back();
         reproduction();
         bestFitness = bestIndividual.fitness;
+        bestDistance = bestIndividual.distance;
         return bestIndividual.gene;
     }
     
-    float getFitness(const vector<int> &memberGene, const vector<int> &targetGene)
+    float getFitness(const vector<int> &memberGene, const vector<int> &targetGene, int* distancePtr)
     {
         switch(measure) {
             case HAMMING:
-                return getHammingFitness(memberGene, targetGene);
+                return getHammingFitness(memberGene, targetGene, distancePtr);
                 break;
             case SWAP:
-                return getSwapFitness(memberGene, targetGene);
+                return getSwapFitness(memberGene, targetGene, distancePtr);
                 break;
             default:
                 break;
         }
     }
-        
-    float getHammingFitness(const vector<int> &stringA, const vector<int> &stringB)
+    
+    //GET RID OF THIS POINTER SHIT, DEBUGGING ONLY
+    
+    float getHammingFitness(const vector<int> &stringA, const vector<int> &stringB, int* distancePtr)
     {
         int distance = 0;
         for(int i=0;i<geneLength;i++)
             if(stringA[i] != stringB[i])
                 distance += 1;
-                
+        
+        *distancePtr = distance;
+        
         int correct = geneLength - distance;
         return (float)correct / (float)geneLength;
     }
     
-    float getSwapFitness(const vector<int> &stringA, const vector<int> &stringB)
+    void printString(const vector<int> &string)
     {
+
+        for(int i=0; i<string.size(); i++)
+            std::cout << string[i] << " ";
+    }
+
+    float getSwapFitness(const vector<int> &stringA, const vector<int> &stringB, int* distancePtr)
+    {
+
+        std::cout << "stringA: ";
+        printString(stringA);
+        std::cout << "\n";
+        
+        std::cout << "stringB: ";
+        printString(stringB);
+        std::cout << "\n";
         
         int distance = swap.getDistance(stringA, stringB);
+        
+        *distancePtr = distance;
+        
         return 1.0f / float(distance + 1);
     }
     
