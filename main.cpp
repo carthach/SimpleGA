@@ -48,6 +48,9 @@ protected:
     void m_help();
     void m_string(int argc, const t_atom* argv);
     void m_targetFitness(float targetFitness);
+    void m_populationSize(int populationSize);
+    void m_mutationRate(float mutationRate);
+    
     void m_measure(int argc, const t_atom* argv);
     
 private:
@@ -58,6 +61,8 @@ private:
     FLEXT_CALLBACK_V(m_string)
     FLEXT_CALLBACK_V(m_measure)
     FLEXT_CALLBACK_F(m_targetFitness)
+    FLEXT_CALLBACK_I(m_populationSize)
+    FLEXT_CALLBACK_F(m_mutationRate)
     FLEXT_CALLBACK(m_bang)
     FLEXT_CALLBACK(m_help)
     
@@ -76,6 +81,7 @@ simpleGA::simpleGA(int argc, const t_atom* argv)
     AddOutList();
     AddOutFloat();
     AddOutBang();
+    AddOutInt();
     
     geneticAlgorithm.populationSize = 100;
     geneticAlgorithm.mutationRate = 0.1;
@@ -110,6 +116,8 @@ void simpleGA::setup(t_classid c)
     FLEXT_CADDBANG(c, 0, m_bang);
     
     FLEXT_CADDMETHOD_(c,0,"targetFitness",m_targetFitness);
+    FLEXT_CADDMETHOD_(c,0,"populationSize",m_populationSize);
+    FLEXT_CADDMETHOD_(c,0,"mutationRate",m_mutationRate);
     FLEXT_CADDMETHOD_(c,0,"help",m_help);
     FLEXT_CADDMETHOD_(c,0,"measure", m_measure);
     FLEXT_CADDMETHOD_(c,0,"string",m_string);
@@ -127,7 +135,7 @@ void simpleGA::m_list(int argc, const t_atom *argv)
         if(val<min)
             min = val;
     }
-    geneticAlgorithm = GeneticAlgorithm(100, newString, NUMERICAL, geneticAlgorithm.measure, min, max);
+    geneticAlgorithm = GeneticAlgorithm(newString, NUMERICAL, geneticAlgorithm.measure, geneticAlgorithm.populationSize, geneticAlgorithm.mutationRate, min, max);
 
     post("Number received");
 }
@@ -146,7 +154,7 @@ void simpleGA::m_string(int argc, const t_atom *argv)
         if(i < argc-1)
             newString.push_back(' ');
     }
-    geneticAlgorithm = GeneticAlgorithm(100, newString, ALPHANUMERICAL, geneticAlgorithm.measure);
+    geneticAlgorithm = GeneticAlgorithm(newString, ALPHANUMERICAL, geneticAlgorithm.measure, geneticAlgorithm.populationSize,geneticAlgorithm.mutationRate);
     
     post("Alphanumeric string received");
 }
@@ -166,9 +174,7 @@ void simpleGA::m_measure(int argc, const t_atom *argv)
             geneticAlgorithm.measure = geneticAlgorithm.HAMMING;
             post("Compute fitness with hamming distance");
         }
-
     }
-    
 }
 
 void simpleGA::m_bang()
@@ -202,6 +208,18 @@ void simpleGA::m_targetFitness(float targetFitness)
 {
     this->targetFitness = targetFitness;
     post("Target Fitness changed");
+}
+
+void simpleGA::m_populationSize(int populationSize)
+{
+    this->geneticAlgorithm.populationSize = populationSize;
+    post("Population Size changed");
+}
+
+void simpleGA::m_mutationRate(float mutationRate)
+{
+    this->geneticAlgorithm.mutationRate = mutationRate;
+    post("Mutation Rate changed");
 }
 
 void simpleGA::m_help()

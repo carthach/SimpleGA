@@ -45,13 +45,13 @@ public:
     GATYPE gaType;
     
     //Our init function for constructors
-    void init(int populationSize, vector<int> targetString, GATYPE gaType, MEASURE measure)
+    void init(vector<int> targetString, GATYPE gaType, MEASURE measure, int populationSize, float mutationRate)
     {
-        this->populationSize = populationSize;
         this->targetString = targetString;
         this->gaType = gaType;
         this->measure = measure;
-        
+        this->populationSize = populationSize;
+        this->mutationRate = mutationRate;
         
         geneLength = targetString.size();
         
@@ -66,21 +66,22 @@ public:
     //Our default constructor
     GeneticAlgorithm()
     {
-        init(100, vector<int>(0), NUMERICAL, HAMMING );
+        init(vector<int>(0), NUMERICAL, HAMMING, 100, 0.1);
     }
     
     //For alphanumerical
-    GeneticAlgorithm(int populationSize, vector<int> targetString, GATYPE gaType, MEASURE measure)
+    GeneticAlgorithm(vector<int> targetString, GATYPE gaType, MEASURE measure, int populationSize, float mutationRate)
     {
-        init(populationSize,targetString, gaType, measure);
+        init(targetString, gaType, measure, populationSize, mutationRate);
     }
     
     //For numerical
-    GeneticAlgorithm(int populationSize, vector<int> targetString, GATYPE gaType, MEASURE measure, int min, int max)
+    GeneticAlgorithm(vector<int> targetString, GATYPE gaType, MEASURE measure, int populationSize, float mutationRate, int min, int max)
     {
+        this->populationSize = populationSize;
         this->min = min;
         range = (max - min) + 1;
-        init(populationSize,targetString, gaType, measure);
+        init(targetString, gaType, measure, populationSize, mutationRate);
     }
     
     void seedPopulation()
@@ -173,22 +174,34 @@ public:
     
     float getFitness(const vector<int> &memberGene, const vector<int> &targetGene)
     {
-        if(measure == HAMMING)
-            return getHamming(memberGene, targetGene);
-        else {
-            float fitness = (float)swap.getDistance(memberGene, targetGene);
-            return 1.0 / fitness;
+        switch(measure) {
+            case HAMMING:
+                return getHammingFitness(memberGene, targetGene);
+                break;
+            case SWAP:
+                return getSwapFitness(memberGene, targetGene);
+                break;
+            default:
+                break;
         }
     }
-    
-    float getHamming(const vector<int> &stringA, const vector<int> &stringB)
+        
+    float getHammingFitness(const vector<int> &stringA, const vector<int> &stringB)
     {
-        float fitness = 0.0;
+        int distance = 0;
         for(int i=0;i<geneLength;i++)
-            if(stringA[i] == stringB[i])
-                fitness += 1.0;
-        fitness /= (float)geneLength;
-        return fitness;
+            if(stringA[i] != stringB[i])
+                distance += 1;
+                
+        int correct = geneLength - distance;
+        return (float)correct / (float)geneLength;
+    }
+    
+    float getSwapFitness(const vector<int> &stringA, const vector<int> &stringB)
+    {
+        
+        int distance = swap.getDistance(stringA, stringB);
+        return 1.0f / float(distance + 1);
     }
     
     vector<int> getRandomMember()
