@@ -29,6 +29,20 @@ float SwapDistance::getDistance(const std::vector<int> &patternOne, const std::v
         if(patternTwo[i] == 1)
             patternTwoOnsetTimes.push_back(i);
     }
+	
+	//------
+	//Temporary hack to handle case of string of all zeroes -> crashes dijkstras
+    if(patternOneOnsetTimes.size() == 0 && patternTwoOnsetTimes.size() == 0)
+        return 0.0f;
+    
+    if(patternOneOnsetTimes.size() == 0)
+        return patternTwoOnsetTimes.size();
+
+    
+    if(patternTwoOnsetTimes.size() == 0)
+        return patternOneOnsetTimes.size();
+		
+	//-----
     
     if(patternOneOnsetTimes.size() == patternTwoOnsetTimes.size())
     {
