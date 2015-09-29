@@ -16,17 +16,17 @@ struct Member {
     float fitness;
 };
 
-enum GATYPE {
-    NUMERICAL,
-    ALPHANUMERICAL
-};
-
 class GeneticAlgorithm {
     vector<Member> population;
     vector<Member> matingPool;
     
     int min, range;
 public:
+    enum GATYPE {
+        NUMERICAL,
+        ALPHANUMERICAL
+    };
+    
     enum MEASURE {
         HAMMING,
         SWAP
