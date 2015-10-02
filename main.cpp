@@ -135,7 +135,7 @@ void simpleGA::m_list(int argc, const t_atom *argv)
         if(val<min)
             min = val;
     }
-    geneticAlgorithm = GeneticAlgorithm(newString, NUMERICAL, geneticAlgorithm.measure, geneticAlgorithm.populationSize, geneticAlgorithm.mutationRate, min, max);
+    geneticAlgorithm = GeneticAlgorithm(newString, GeneticAlgorithm::NUMERICAL, geneticAlgorithm.measure, geneticAlgorithm.populationSize, geneticAlgorithm.mutationRate, min, max);
 
     post("Number received");
 }
@@ -154,7 +154,7 @@ void simpleGA::m_string(int argc, const t_atom *argv)
         if(i < argc-1)
             newString.push_back(' ');
     }
-    geneticAlgorithm = GeneticAlgorithm(newString, ALPHANUMERICAL, geneticAlgorithm.measure, geneticAlgorithm.populationSize,geneticAlgorithm.mutationRate);
+    geneticAlgorithm = GeneticAlgorithm(newString, GeneticAlgorithm::ALPHANUMERICAL, geneticAlgorithm.measure, geneticAlgorithm.populationSize,geneticAlgorithm.mutationRate);
     
     post("Alphanumeric string received");
 }
@@ -186,11 +186,11 @@ void simpleGA::m_bang()
     std::vector<int> bestMember = geneticAlgorithm.evolve();
     AtomList myList(bestMember.size());
     
-    if(geneticAlgorithm.gaType == NUMERICAL) {
+    if(geneticAlgorithm.gaType == GeneticAlgorithm::NUMERICAL) {
         for(int i = 0; i< bestMember.size(); ++i)
             SetInt(myList[i],bestMember[i]);
         ToOutList(0,myList);
-    } else if (geneticAlgorithm.gaType == ALPHANUMERICAL)
+    } else if (geneticAlgorithm.gaType == GeneticAlgorithm::ALPHANUMERICAL)
     {
         string s;
         for(int i = 0; i< bestMember.size(); ++i)

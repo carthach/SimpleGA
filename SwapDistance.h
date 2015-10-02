@@ -18,6 +18,23 @@ using namespace std;
 class SwapDistance {
 public:
     float getDistance(const std::vector<int> &patternOne, const std::vector<int> &patternTwo);
+    
+private:
+    typedef int Weight;
+    typedef boost::property<boost::edge_weight_t, Weight> WeightProperty;
+    
+    typedef boost::adjacency_list < boost::listS, boost::vecS, boost::directedS, boost::no_property, WeightProperty> Graph;
+    typedef boost::graph_traits <Graph >::vertex_descriptor Vertex;
+    
+    std::map<std::pair<int, int>, Vertex> vertexMap;
+    
+    // get the property map for vertex indices
+    typedef property_map<Graph, vertex_index_t>::type IndexMap;
+    
+    typedef boost::iterator_property_map < Vertex*, IndexMap, Vertex, Vertex& > PredecessorMap;
+    typedef boost::iterator_property_map < Weight*, IndexMap, Weight, Weight& > DistanceMap;
+    
+    Graph g;
 };
 
 

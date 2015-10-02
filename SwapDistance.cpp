@@ -16,7 +16,6 @@ void printPair(const std::pair<int, int> &thePair)
 float SwapDistance::getDistance(const std::vector<int> &patternOne, const std::vector<int> &patternTwo)
 {
     int noOfVertices = 0;
-    
     int distance = 0;
     
     vector<int> patternOneOnsetTimes;
@@ -67,15 +66,9 @@ float SwapDistance::getDistance(const std::vector<int> &patternOne, const std::v
             ct = patternOneOnsetTimes.size();
         }
         
-        typedef int Weight;
-        typedef boost::property<boost::edge_weight_t, Weight> WeightProperty;
-        
-        typedef boost::adjacency_list < boost::listS, boost::vecS, boost::directedS, boost::no_property, WeightProperty> Graph;
-        typedef boost::graph_traits <Graph >::vertex_descriptor Vertex;
-        
-        std::map<std::pair<int, int>, Vertex> vertexMap;
-        
-        Graph g;
+        //Reset boost/dijkstra
+        vertexMap.clear();
+        g.clear();
         
         //Add vertices and create
         int i = 0; int j = 0;
@@ -125,8 +118,7 @@ float SwapDistance::getDistance(const std::vector<int> &patternOne, const std::v
             }
         }
         
-        // get the property map for vertex indices
-        typedef property_map<Graph, vertex_index_t>::type IndexMap;
+
         
         //        std::cout << "vertices(g) = ";
         //        typedef graph_traits<Graph>::vertex_iterator vertex_iter;
@@ -145,9 +137,6 @@ float SwapDistance::getDistance(const std::vector<int> &patternOne, const std::v
         //            << "," << index[target(*ei, g)] << ") ";
         //        std::cout << std::endl;
         //        // ...
-        
-        typedef boost::iterator_property_map < Vertex*, IndexMap, Vertex, Vertex& > PredecessorMap;
-        typedef boost::iterator_property_map < Weight*, IndexMap, Weight, Weight& > DistanceMap;
         
         // Create things for Dijkstra
         std::vector<Vertex> predecessors(boost::num_vertices(g)); // To store parents

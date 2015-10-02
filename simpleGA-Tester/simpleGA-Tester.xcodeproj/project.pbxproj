@@ -1,0 +1,253 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		072DEE1A1BBEE5AC000B9DEB /* SwapDistance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072DEE181BBEE5AC000B9DEB /* SwapDistance.cpp */; settings = {ASSET_TAGS = (); }; };
+		07F3608E1BBD497E00C99ECB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F3608D1BBD497E00C99ECB /* main.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		07F360881BBD497E00C99ECB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		072DEE171BBEE5AC000B9DEB /* GeneticAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneticAlgorithm.h; path = ../../GeneticAlgorithm.h; sourceTree = "<group>"; };
+		072DEE181BBEE5AC000B9DEB /* SwapDistance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SwapDistance.cpp; path = ../../SwapDistance.cpp; sourceTree = "<group>"; };
+		072DEE191BBEE5AC000B9DEB /* SwapDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwapDistance.h; path = ../../SwapDistance.h; sourceTree = "<group>"; };
+		07F3608A1BBD497E00C99ECB /* simpleGA-Tester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "simpleGA-Tester"; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F3608D1BBD497E00C99ECB /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		07F360871BBD497E00C99ECB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07F360811BBD497E00C99ECB = {
+			isa = PBXGroup;
+			children = (
+				07F3608C1BBD497E00C99ECB /* simpleGA-Tester */,
+				07F3608B1BBD497E00C99ECB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		07F3608B1BBD497E00C99ECB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07F3608A1BBD497E00C99ECB /* simpleGA-Tester */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		07F3608C1BBD497E00C99ECB /* simpleGA-Tester */ = {
+			isa = PBXGroup;
+			children = (
+				072DEE171BBEE5AC000B9DEB /* GeneticAlgorithm.h */,
+				072DEE181BBEE5AC000B9DEB /* SwapDistance.cpp */,
+				072DEE191BBEE5AC000B9DEB /* SwapDistance.h */,
+				07F3608D1BBD497E00C99ECB /* main.cpp */,
+			);
+			path = "simpleGA-Tester";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		07F360891BBD497E00C99ECB /* simpleGA-Tester */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07F360911BBD497E00C99ECB /* Build configuration list for PBXNativeTarget "simpleGA-Tester" */;
+			buildPhases = (
+				07F360861BBD497E00C99ECB /* Sources */,
+				07F360871BBD497E00C99ECB /* Frameworks */,
+				07F360881BBD497E00C99ECB /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "simpleGA-Tester";
+			productName = "simpleGA-Tester";
+			productReference = 07F3608A1BBD497E00C99ECB /* simpleGA-Tester */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		07F360821BBD497E00C99ECB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Cárthach Ó Nuanáin";
+				TargetAttributes = {
+					07F360891BBD497E00C99ECB = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 07F360851BBD497E00C99ECB /* Build configuration list for PBXProject "simpleGA-Tester" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 07F360811BBD497E00C99ECB;
+			productRefGroup = 07F3608B1BBD497E00C99ECB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				07F360891BBD497E00C99ECB /* simpleGA-Tester */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		07F360861BBD497E00C99ECB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07F3608E1BBD497E00C99ECB /* main.cpp in Sources */,
+				072DEE1A1BBEE5AC000B9DEB /* SwapDistance.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		07F3608F1BBD497E00C99ECB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		07F360901BBD497E00C99ECB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		07F360921BBD497E00C99ECB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		07F360931BBD497E00C99ECB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		07F360851BBD497E00C99ECB /* Build configuration list for PBXProject "simpleGA-Tester" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07F3608F1BBD497E00C99ECB /* Debug */,
+				07F360901BBD497E00C99ECB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07F360911BBD497E00C99ECB /* Build configuration list for PBXNativeTarget "simpleGA-Tester" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07F360921BBD497E00C99ECB /* Debug */,
+				07F360931BBD497E00C99ECB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 07F360821BBD497E00C99ECB /* Project object */;
+}

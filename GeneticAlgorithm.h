@@ -7,13 +7,18 @@
 //
 #include <vector>
 #include <algorithm>
-#include <SwapDistance.h>
+#include "SwapDistance.h"
+#if FLEXT_SYS != FLEXT_SYS_MAX //Need this hack for Max/MSP
+#include <random>
+#endif
+#include <ctime>
 
 using namespace std;
 
 struct Member {
     vector<int> gene;
     float fitness;
+    int distance;
 };
 
 class GeneticAlgorithm {
@@ -47,6 +52,8 @@ public:
     //Our init function for constructors
     void init(vector<int> targetString, GATYPE gaType, MEASURE measure, int populationSize, float mutationRate)
     {
+        srand(time(NULL));
+        
         this->targetString = targetString;
         this->gaType = gaType;
         this->measure = measure;
@@ -60,6 +67,7 @@ public:
             range = 94;
         }
         
+        bestFitness = 0.0f;
         seedPopulation();
     }
     
@@ -95,13 +103,14 @@ public:
                 }
             } else {
                 for(int j=0;j<geneLength; j++) {
-                    gene.push_back(random()%range);
+                    gene.push_back(rand()%range);
                 }
             }
             
             Member member = {gene, 0.0};
             population.push_back(member);
         }
+        getFitness();
     }
     
     Member crossover()
@@ -132,10 +141,69 @@ public:
         }
     }
     
+    //Here we do roulette wheel selection to determine the pool (
+    void rouletteSelection()
+    {
+        //Nature of Code - Inefficient
+//        for (int i=0; i<population.size(); i++) {
+//            int n = population[i].fitness * 100.0;
+//            
+//            for(int j=0; j<n; j++)
+//                matingPool.push_back(population[i]);
+//        }
+        
+        
+        //Standard roulette wheel
+        float totalFitness = 0;
+        for(int i=0; i<population.size(); i++)
+            totalFitness += population[i].fitness;
+        
+        for(int i=0; i<population.size(); i++)
+        {
+
+//            double rndNumber = rand() / (double) totalFitness;
+            
+            float rndNumber = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/totalFitness));
+            
+            double offset = 0.0;
+            int pick = 0;
+            
+            for (int j = 0; j < population.size(); j++) {
+                offset += population[j].fitness;
+                if (rndNumber < offset) {
+                    pick = j;
+                    break;
+                }
+            }
+            
+            matingPool.push_back(population[pick]);
+            
+        }
+    }
+    
+    //Here we select the top percentile and repeatedly add them to the pool
+    void truncateSelection(float percentage)
+    {
+        int proportion = population.size() - (percentage * population.size());
+        
+        int j = proportion;
+        
+        for(int i=0; i<population.size(); i++) {
+            matingPool.push_back(population[j]);
+            
+            j = (j == population.size()-1 ? proportion : j+1);
+        }
+        
+    }
+    
     void reproduction()
     {
         matingPool.clear();
-        selection();
+        
+        //Here we create the matingPool using a selection procedure
+        truncateSelection(0.2);
+//        rouletteSelection();
+        
         for(int i=0; i<population.size();i++) {
             Member child = crossover();
             mutation(&child);
@@ -143,40 +211,34 @@ public:
         }
     }
     
-    //Here we do roulette wheel selection to determine the pool (
-    void selection()
-    {
-        for (int i=0; i<population.size(); i++) {
-            int n = population[i].fitness * 100.0;
-            
-            for(int j=0; j<n; j++)
-                matingPool.push_back(population[i]);
-        }
-    }
-    
     void getFitness()
     {
-        for(int i=0; i<populationSize;i++)
-            population[i].fitness = getFitness(population[i].gene, targetString);
+        for(int i=0; i<populationSize;i++) {
+            
+            population[i].fitness = getFitness(population[i].gene, targetString, &population[i].distance);
+        }
     }
     
     static bool sortByFitness(const Member &lhs, const Member &rhs) { return lhs.fitness < rhs.fitness; }
     
+    //Here we do the evolution stage
     vector<int> evolve()
     {
+        reproduction();
+        
         getFitness();
         sort(population.begin(), population.end(),sortByFitness); //Sort by fitness
+        
         Member bestIndividual = population.back();
-        reproduction();
         bestFitness = bestIndividual.fitness;
         return bestIndividual.gene;
     }
     
-    float getFitness(const vector<int> &memberGene, const vector<int> &targetGene)
+    float getFitness(const vector<int> &memberGene, const vector<int> &targetGene, int* distance)
     {
         switch(measure) {
             case HAMMING:
-                return getHammingFitness(memberGene, targetGene);
+                return getHammingFitness(memberGene, targetGene,distance);
                 break;
             case SWAP:
                 return getSwapFitness(memberGene, targetGene);
@@ -186,7 +248,7 @@ public:
         }
     }
         
-    float getHammingFitness(const vector<int> &stringA, const vector<int> &stringB)
+    float getHammingFitness(const vector<int> &stringA, const vector<int> &stringB, int* distance_out)
     {
         int distance = 0;
         for(int i=0;i<geneLength;i++)
@@ -194,6 +256,7 @@ public:
                 distance += 1;
                 
         int correct = geneLength - distance;
+        *distance_out = distance;
         return (float)correct / (float)geneLength;
     }
     
