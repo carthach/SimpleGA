@@ -201,8 +201,8 @@ public:
         matingPool.clear();
         
         //Here we create the matingPool using a selection procedure
-        truncateSelection(0.2);
-//        rouletteSelection();
+//        truncateSelection(0.2);
+        rouletteSelection();
         
         for(int i=0; i<population.size();i++) {
             Member child = crossover();

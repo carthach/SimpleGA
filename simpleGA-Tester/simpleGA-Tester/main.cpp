@@ -65,54 +65,73 @@ vector<vector<int> > splitPattern(vector<int> pattern)
     return patterns;
 }
 
-
-
-int main(int argc, const char * argv[]) {
+int call(const char *in, char *out, int lenOut)
+{
     // insert code here...
+    vector<vector<int> > inputPatterns;
     
     //=============================
     //Basic pattern
-    std::vector<int> kickPattern = {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0};
-    std::vector<int> snarePattern = {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0};
-    std::vector<int> closeHatPattern = {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0};
-    std::vector<int> openHatPattern = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+//    vector<int> kickPattern = {1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0};
+//    vector<int> snarePattern = {0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0};
+//    vector<int> closeHatPattern = {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0};
+//    vector<int> openHatPattern = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+//    
+//    inputPatterns.push_back(kickPattern);
+//    inputPatterns.push_back(snarePattern);
+//    inputPatterns.push_back(closeHatPattern);
+//    inputPatterns.push_back(openHatPattern);
     
-    vector<vector<int> > inputPatterns;
-    
-    inputPatterns.push_back(kickPattern);
-    inputPatterns.push_back(snarePattern);
-    inputPatterns.push_back(closeHatPattern);
-    inputPatterns.push_back(openHatPattern);
-    
-    std::ifstream ifs("/Users/carthach/Desktop/in.json");
-    std::string content( (std::istreambuf_iterator<char>(ifs) ),
-                        (std::istreambuf_iterator<char>()    ) );
+    ifstream ifs("/Users/carthach/Desktop/in.json");
+    string content( (istreambuf_iterator<char>(ifs) ),
+                        (istreambuf_iterator<char>()    ) );
     
     JsonParser jp;
     jp.parseJson(content.c_str());
+    
     DrumPattern drumPatternIn = jp.getPatternList();
     
-    std::vector<int> inputPattern = joinPattern(inputPatterns);
+    for(int i=0; i<4; i++)
+        inputPatterns.push_back(patternToBinary(drumPatternIn[i]));
+    
+    vector<int> inputPattern = joinPattern(inputPatterns);
     
     //=============================
     //Do the GA
     
-    GeneticAlgorithm ga(inputPattern, GeneticAlgorithm::GATYPE::NUMERICAL, GeneticAlgorithm::MEASURE::SWAP, 50, 0.1, 0, 1);
+    GeneticAlgorithm ga(inputPattern, GeneticAlgorithm::GATYPE::NUMERICAL, GeneticAlgorithm::MEASURE::HAMMING, 100, 0.1, 0, 1);
     
     vector<vector<int> > gaPatterns;
+    vector<float> fitnessRec;
     
     int i = 0;
-    std::vector<int> best;
-//    while(ga.bestFitness < 0.95) {
-    while(i < 33) {
-        best = ga.evolve();
+    while(ga.bestFitness < 0.95) {
+        //    while(i < 33) {
+        vector<int> best = ga.evolve();
         gaPatterns.push_back(best);
         
         i++;
-        std::cout << "bestFitness: " << ga.bestFitness << "\n";
+        fitnessRec.push_back(ga.bestFitness);
+        cout << "bestFitness: " << ga.bestFitness << "\n";
     }
     
-    std::cout << "Generations: " << i << "\n";
+    int incr = gaPatterns.size() / 32.0;
+    
+    vector<vector<int> > prunedPatterns;
+    
+    cout << "===========================\n";
+    
+    for(int i=0; i<32; i++) {
+        int index = i * incr;
+        prunedPatterns.push_back(gaPatterns[index]);
+        cout << index << "\n";
+        
+        std::cout << "Fitness: " << fitnessRec[index] << "\n";
+    }
+    
+    prunedPatterns.push_back(inputPattern);
+    
+    cout << "Generations: " << i << "\n";
     
     //=============================
     //Serialise output patterns
@@ -120,8 +139,8 @@ int main(int argc, const char * argv[]) {
     
     vector<DrumEvents> kickPatterns, snarePatterns, closedHatPatterns, openHatPatterns;
     
-    for(int i=0 ; i < gaPatterns.size(); i++) {
-        vector<vector<int> > patterns = splitPattern(gaPatterns[i]);
+    for(int i=0 ; i < prunedPatterns.size(); i++) {
+        vector<vector<int> > patterns = splitPattern(prunedPatterns[i]);
         
         DrumEvents kickEvents = binaryToPattern(patterns[0]);
         DrumEvents snareEvents = binaryToPattern(patterns[1]);
@@ -140,16 +159,23 @@ int main(int argc, const char * argv[]) {
     outputPatterns.push_back(snarePatterns);
     outputPatterns.push_back(closedHatPatterns);
     outputPatterns.push_back(openHatPatterns);
-
+    
     //Serialise
     string jsonPatternOut;
     jsonPatternOut = jp.noteEventsToJson(outputPatterns);
-
+    
     //Write out file
-    ofstream outFile;
-    outFile.open("/Users/carthach/Desktop/newPattern.json");
-    outFile << jsonPatternOut;
-    outFile.close();
+//    ofstream outFile;
+//    outFile.open("/Users/carthach/Desktop/newPattern.json");
+//    outFile << jsonPatternOut;
+//    outFile.close();
+    return 0;
+}
+
+
+int main(int argc, const char * argv[]) {
+
+    call("", "", 0);
     
     return 0;
 }
