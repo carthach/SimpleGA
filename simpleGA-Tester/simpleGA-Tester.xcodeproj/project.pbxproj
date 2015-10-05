@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		072DEE1A1BBEE5AC000B9DEB /* SwapDistance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072DEE181BBEE5AC000B9DEB /* SwapDistance.cpp */; settings = {ASSET_TAGS = (); }; };
+		0738A8921BC28EC600F22116 /* JsonParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0738A8901BC28EC600F22116 /* JsonParser.cpp */; settings = {ASSET_TAGS = (); }; };
 		07F3608E1BBD497E00C99ECB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F3608D1BBD497E00C99ECB /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,9 @@
 		072DEE171BBEE5AC000B9DEB /* GeneticAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneticAlgorithm.h; path = ../../GeneticAlgorithm.h; sourceTree = "<group>"; };
 		072DEE181BBEE5AC000B9DEB /* SwapDistance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SwapDistance.cpp; path = ../../SwapDistance.cpp; sourceTree = "<group>"; };
 		072DEE191BBEE5AC000B9DEB /* SwapDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwapDistance.h; path = ../../SwapDistance.h; sourceTree = "<group>"; };
+		0738A88F1BC28EC600F22116 /* DrumEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrumEvent.h; sourceTree = "<group>"; };
+		0738A8901BC28EC600F22116 /* JsonParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JsonParser.cpp; sourceTree = "<group>"; };
+		0738A8911BC28EC600F22116 /* JsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonParser.h; sourceTree = "<group>"; };
 		07F3608A1BBD497E00C99ECB /* simpleGA-Tester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "simpleGA-Tester"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F3608D1BBD497E00C99ECB /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -42,6 +46,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0738A88E1BC28E2500F22116 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				0738A88F1BC28EC600F22116 /* DrumEvent.h */,
+				0738A8901BC28EC600F22116 /* JsonParser.cpp */,
+				0738A8911BC28EC600F22116 /* JsonParser.h */,
+			);
+			name = Json;
+			sourceTree = "<group>";
+		};
+		0738A8931BC28ECB00F22116 /* Agent */ = {
+			isa = PBXGroup;
+			children = (
+				072DEE171BBEE5AC000B9DEB /* GeneticAlgorithm.h */,
+				072DEE181BBEE5AC000B9DEB /* SwapDistance.cpp */,
+				072DEE191BBEE5AC000B9DEB /* SwapDistance.h */,
+			);
+			name = Agent;
+			sourceTree = "<group>";
+		};
 		07F360811BBD497E00C99ECB = {
 			isa = PBXGroup;
 			children = (
@@ -61,9 +85,8 @@
 		07F3608C1BBD497E00C99ECB /* simpleGA-Tester */ = {
 			isa = PBXGroup;
 			children = (
-				072DEE171BBEE5AC000B9DEB /* GeneticAlgorithm.h */,
-				072DEE181BBEE5AC000B9DEB /* SwapDistance.cpp */,
-				072DEE191BBEE5AC000B9DEB /* SwapDistance.h */,
+				0738A8931BC28ECB00F22116 /* Agent */,
+				0738A88E1BC28E2500F22116 /* Json */,
 				07F3608D1BBD497E00C99ECB /* main.cpp */,
 			);
 			path = "simpleGA-Tester";
@@ -127,6 +150,7 @@
 			files = (
 				07F3608E1BBD497E00C99ECB /* main.cpp in Sources */,
 				072DEE1A1BBEE5AC000B9DEB /* SwapDistance.cpp in Sources */,
+				0738A8921BC28EC600F22116 /* JsonParser.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
