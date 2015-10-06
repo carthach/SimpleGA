@@ -177,8 +177,9 @@ public:
             }
             
             matingPool.push_back(population[pick]);
-            
         }
+        
+        
     }
     
     //Here we select the top percentile and repeatedly add them to the pool
@@ -196,13 +197,23 @@ public:
         
     }
     
+    
+    //Selection, crossover and mutation
     void reproduction()
     {
+        //Clear the pool
         matingPool.clear();
         
         //Here we create the matingPool using a selection procedure
 //        truncateSelection(0.2);
         rouletteSelection();
+        
+        //Elitism
+        float elitismFactor = 0.09f;
+        int noOfEliteMembers = elitismFactor * population.size();
+        
+        for(int i=population.size()-1; i>(population.size()-noOfEliteMembers); --i)
+            matingPool.push_back(population[i]);
         
         for(int i=0; i<population.size();i++) {
             Member child = crossover();
@@ -211,6 +222,7 @@ public:
         }
     }
     
+    //Compute the fitness of the entire population
     void getFitness()
     {
         for(int i=0; i<populationSize;i++) {
@@ -219,21 +231,26 @@ public:
         }
     }
     
+    //Sorting function
     static bool sortByFitness(const Member &lhs, const Member &rhs) { return lhs.fitness < rhs.fitness; }
     
     //Here we do the evolution stage
     vector<int> evolve()
     {
+        //The core
         reproduction();
         
+        //Fitness and sorting
         getFitness();
         sort(population.begin(), population.end(),sortByFitness); //Sort by fitness
         
+        //Returning
         Member bestIndividual = population.back();
         bestFitness = bestIndividual.fitness;
         return bestIndividual.gene;
     }
     
+    //Return the floating point distance
     float getFitness(const vector<int> &memberGene, const vector<int> &targetGene, int* distance)
     {
         switch(measure) {
@@ -247,7 +264,8 @@ public:
                 break;
         }
     }
-        
+    
+    //Hamming fitness as 1/d
     float getHammingFitness(const vector<int> &stringA, const vector<int> &stringB, int* distance_out)
     {
         int distance = 0;
@@ -260,6 +278,7 @@ public:
         return (float)correct / (float)geneLength;
     }
     
+    //Directed-swap fitness as 1/d
     float getSwapFitness(const vector<int> &stringA, const vector<int> &stringB)
     {
         
@@ -267,6 +286,7 @@ public:
         return 1.0f / float(distance + 1);
     }
     
+    //Just get a random member from the population
     vector<int> getRandomMember()
     {
         int randomIndex = rand() % populationSize;

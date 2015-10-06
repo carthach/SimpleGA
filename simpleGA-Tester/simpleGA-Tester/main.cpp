@@ -136,7 +136,6 @@ int call(const char *in, char *out, int lenOut)
     //=============================
     //Serialise output patterns
     vector<DrumPattern> outputPatterns;
-    
     vector<DrumEvents> kickPatterns, snarePatterns, closedHatPatterns, openHatPatterns;
     
     for(int i=0 ; i < prunedPatterns.size(); i++) {
@@ -149,7 +148,6 @@ int call(const char *in, char *out, int lenOut)
         
         kickPatterns.push_back(kickEvents);
         snarePatterns.push_back(snareEvents);
-        
         closedHatPatterns.push_back(closedHatEvents);
         openHatPatterns.push_back(openHatEvents);
     }
@@ -165,10 +163,12 @@ int call(const char *in, char *out, int lenOut)
     jsonPatternOut = jp.noteEventsToJson(outputPatterns);
     
     //Write out file
-//    ofstream outFile;
-//    outFile.open("/Users/carthach/Desktop/newPattern.json");
-//    outFile << jsonPatternOut;
-//    outFile.close();
+    ofstream outFile;
+    outFile.open("/Users/carthach/Desktop/newPattern.json");
+    outFile << jsonPatternOut;
+    outFile.close();
+    
+//    strcpy_s(out, lenOut, jsonPatternOut.c_str());
     return 0;
 }
 
