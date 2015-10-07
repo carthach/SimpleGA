@@ -68,6 +68,8 @@ vector<vector<int> > splitPattern(vector<int> pattern)
     return patterns;
 }
 
+
+
 int call(const char *in, char *out, int lenOut)
 {
     // insert code here...
@@ -100,9 +102,6 @@ int call(const char *in, char *out, int lenOut)
     
     GeneticAlgorithm ga(inputPattern, GeneticAlgorithm::GATYPE::NUMERICAL, GeneticAlgorithm::MEASURE::HAMMING, 100, 0.1, 0, 1);
     
-    vector<vector<int> > gaPatterns;
-    vector<float> fitnessRec;
-    
 #if LOGGING
     clock_t last;
     last = clock();
@@ -112,13 +111,13 @@ int call(const char *in, char *out, int lenOut)
 #endif
     
     int i = 0;
+    vector<Member> generatedMembers;
+    
     while(ga.bestFitness < 0.95) {
-
-        vector<int> best = ga.evolve();
-        gaPatterns.push_back(best);
+        generatedMembers.push_back(ga.evolve());
         
         i++;
-        fitnessRec.push_back(ga.bestFitness);
+        
         
 #if LOGGING
         cout << "bestFitness: " << ga.bestFitness << "\n";
@@ -126,7 +125,6 @@ int call(const char *in, char *out, int lenOut)
         float timeOfIteration = (float)current/CLOCKS_PER_SEC;
         timeFile << timeOfIteration << " " << ga.bestFitness << "\n";
 #endif
-        
     }
     
 #if LOGGING
@@ -134,30 +132,59 @@ int call(const char *in, char *out, int lenOut)
     cout << "===========================\n";
 #endif
     
-    int incr = gaPatterns.size() / 32.0;
-    vector<vector<int> > prunedPatterns;
+    int incr = generatedMembers.size() / 32.0;
     
+    
+    vector<Member> prunedMembers;
     for(int i=0; i<32; i++) {
         int index = i * incr;
-        prunedPatterns.push_back(gaPatterns[index]);
+        prunedMembers.push_back(generatedMembers[index]);
         
 #if LOGGING
         cout << "Pruned Pattern Index:" << index << "\n";
-        std::cout << "Pruned Pattern Fitness: " << fitnessRec[index] << "\n";
+        std::cout << "Pruned Pattern Fitness: " << prunedMembers[i].fitness << "\n";
 #endif
     }
     
-    prunedPatterns.push_back(inputPattern);
+//    //Sort by density
+//    sort(prunedMembers.begin(), prunedMembers.end(), GeneticAlgorithm::sortByDensity);
+//    
+//    //Find partition point
+//    int targetDensity = std::count(inputPattern.begin(),inputPattern.end(), 1);
+//
+//    int index = 0;
+//    for(int i=0; i<prunedMembers.size(); i++) {
+//        if (prunedMembers[i].density >= targetDensity) {
+//            index = i;
+//            break;
+//        }
+//    }
+    
+//    //Sort both sides
+    
+    int index = 16;
+    sort(prunedMembers.begin(), prunedMembers.begin()+index, GeneticAlgorithm::sortByFitness);
+    sort(prunedMembers.begin()+index, prunedMembers.end(), GeneticAlgorithm::sortByFitnessDescending);
     
 
+    vector<vector<int> > generatedPatterns;
+    
+    for(int i=0; i<index; i++)
+        generatedPatterns.push_back(prunedMembers[i].gene);
+    
+    generatedPatterns.push_back(inputPattern);
+    
+    for(int i=index; i<prunedMembers.size(); i++)
+        generatedPatterns.push_back(prunedMembers[i].gene);
+        
     
     //=============================
     //Serialise output patterns
     vector<DrumPattern> outputPatterns;
     vector<DrumEvents> kickPatterns, snarePatterns, closedHatPatterns, openHatPatterns;
     
-    for(int i=0 ; i < prunedPatterns.size(); i++) {
-        vector<vector<int> > patterns = splitPattern(prunedPatterns[i]);
+    for(int i=0 ; i < prunedMembers.size(); i++) {
+        vector<vector<int> > patterns = splitPattern(generatedPatterns[i]);
         
         DrumEvents kickEvents = binaryToPattern(patterns[0]);
         DrumEvents snareEvents = binaryToPattern(patterns[1]);

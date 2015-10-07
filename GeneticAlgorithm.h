@@ -18,6 +18,7 @@ using namespace std;
 struct Member {
     vector<int> gene;
     float fitness;
+    float density;
     int distance;
 };
 
@@ -233,28 +234,38 @@ public:
     void getFitness()
     {
         for(int i=0; i<populationSize;i++) {
-            
             population[i].fitness = getFitness(population[i].gene, targetString, &population[i].distance);
         }
     }
-    
+
     //Sorting function
     static bool sortByFitness(const Member &lhs, const Member &rhs) { return lhs.fitness < rhs.fitness; }
+    static bool sortByFitnessDescending(const Member &lhs, const Member &rhs) { return lhs.fitness > rhs.fitness; }
+    
+    void getDensity()
+    {
+        for(int i=0; i<populationSize; i++)
+            population[i].density = std::count(population[i].gene.begin(),population[i].gene.end(), 1);
+    }
+
+    //Sorting function
+    static bool sortByDensity(const Member &lhs, const Member &rhs) { return lhs.density < rhs.density; }
     
     //Here we do the evolution stage
-    vector<int> evolve()
+    Member evolve()
     {
         //The core
         reproduction();
         
         //Fitness and sorting
         getFitness();
+        getDensity();
         sort(population.begin(), population.end(),sortByFitness); //Sort by fitness
         
         //Returning
         Member bestIndividual = population.back();
         bestFitness = bestIndividual.fitness;
-        return bestIndividual.gene;
+        return bestIndividual;
     }
     
     //Return the floating point distance
