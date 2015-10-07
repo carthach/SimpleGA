@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0712A7F51BC5775F00F0FD2C /* in.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0712A7F41BC5774B00F0FD2C /* in.json */; };
 		072DEE1A1BBEE5AC000B9DEB /* SwapDistance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 072DEE181BBEE5AC000B9DEB /* SwapDistance.cpp */; settings = {ASSET_TAGS = (); }; };
 		0738A8921BC28EC600F22116 /* JsonParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0738A8901BC28EC600F22116 /* JsonParser.cpp */; settings = {ASSET_TAGS = (); }; };
 		07F3608E1BBD497E00C99ECB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07F3608D1BBD497E00C99ECB /* main.cpp */; };
@@ -15,16 +16,18 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		07F360881BBD497E00C99ECB /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
+				0712A7F51BC5775F00F0FD2C /* in.json in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0712A7F41BC5774B00F0FD2C /* in.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = in.json; sourceTree = "<group>"; };
 		072DEE171BBEE5AC000B9DEB /* GeneticAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneticAlgorithm.h; path = ../../GeneticAlgorithm.h; sourceTree = "<group>"; };
 		072DEE181BBEE5AC000B9DEB /* SwapDistance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SwapDistance.cpp; path = ../../SwapDistance.cpp; sourceTree = "<group>"; };
 		072DEE191BBEE5AC000B9DEB /* SwapDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SwapDistance.h; path = ../../SwapDistance.h; sourceTree = "<group>"; };
@@ -85,9 +88,10 @@
 		07F3608C1BBD497E00C99ECB /* simpleGA-Tester */ = {
 			isa = PBXGroup;
 			children = (
+				0712A7F41BC5774B00F0FD2C /* in.json */,
+				07F3608D1BBD497E00C99ECB /* main.cpp */,
 				0738A8931BC28ECB00F22116 /* Agent */,
 				0738A88E1BC28E2500F22116 /* Json */,
-				07F3608D1BBD497E00C99ECB /* main.cpp */,
 			);
 			path = "simpleGA-Tester";
 			sourceTree = "<group>";

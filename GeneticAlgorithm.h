@@ -37,7 +37,7 @@ public:
         SWAP
     };
     
-    int populationSize;
+    int populationSize, matingPoolSize;
     int geneLength;
     float mutationRate = 0.1;
     
@@ -58,6 +58,9 @@ public:
         this->gaType = gaType;
         this->measure = measure;
         this->populationSize = populationSize;
+//        this->matingPoolSize = this->populationSize;
+        this->matingPoolSize = this->populationSize*5;
+        
         this->mutationRate = mutationRate;
         
         geneLength = targetString.size();
@@ -158,7 +161,7 @@ public:
         for(int i=0; i<population.size(); i++)
             totalFitness += population[i].fitness;
         
-        for(int i=0; i<population.size(); i++)
+        for(int i=0; i<matingPoolSize; i++)
         {
 
 //            double rndNumber = rand() / (double) totalFitness;
@@ -197,6 +200,14 @@ public:
         
     }
     
+    void elitism(float factor)
+    {
+        int noOfEliteMembers = factor * population.size();
+        
+        for(int i=population.size()-1; i>(population.size()-noOfEliteMembers); --i)
+            matingPool.push_back(population[i]);
+    }
+    
     
     //Selection, crossover and mutation
     void reproduction()
@@ -209,11 +220,7 @@ public:
         rouletteSelection();
         
         //Elitism
-        float elitismFactor = 0.09f;
-        int noOfEliteMembers = elitismFactor * population.size();
-        
-        for(int i=population.size()-1; i>(population.size()-noOfEliteMembers); --i)
-            matingPool.push_back(population[i]);
+//        elitism(0.09);
         
         for(int i=0; i<population.size();i++) {
             Member child = crossover();

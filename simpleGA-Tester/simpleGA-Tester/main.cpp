@@ -11,6 +11,9 @@
 #include <fstream>
 #include "GeneticAlgorithm.h"
 #include "JsonParser.h"
+#include <ctime>
+
+#define LOGGING 1
 
 using namespace std;
 
@@ -82,12 +85,8 @@ int call(const char *in, char *out, int lenOut)
 //    inputPatterns.push_back(closeHatPattern);
 //    inputPatterns.push_back(openHatPattern);
     
-    ifstream ifs("/Users/carthach/Desktop/in.json");
-    string content( (istreambuf_iterator<char>(ifs) ),
-                        (istreambuf_iterator<char>()    ) );
-    
     JsonParser jp;
-    jp.parseJson(content.c_str());
+    jp.parseJson(in);
     
     DrumPattern drumPatternIn = jp.getPatternList();
     
@@ -104,34 +103,53 @@ int call(const char *in, char *out, int lenOut)
     vector<vector<int> > gaPatterns;
     vector<float> fitnessRec;
     
+#if LOGGING
+    clock_t last;
+    last = clock();
+    
+    ofstream timeFile;
+    timeFile.open("/Users/carthach/Desktop/ga_truncate.txt");
+#endif
+    
     int i = 0;
     while(ga.bestFitness < 0.95) {
-        //    while(i < 33) {
+
         vector<int> best = ga.evolve();
         gaPatterns.push_back(best);
         
         i++;
         fitnessRec.push_back(ga.bestFitness);
+        
+#if LOGGING
         cout << "bestFitness: " << ga.bestFitness << "\n";
+        clock_t current = clock();
+        float timeOfIteration = (float)current/CLOCKS_PER_SEC;
+        timeFile << timeOfIteration << " " << ga.bestFitness << "\n";
+#endif
+        
     }
     
-    int incr = gaPatterns.size() / 32.0;
-    
-    vector<vector<int> > prunedPatterns;
-    
+#if LOGGING
+    cout << "Generations: " << i << "\n";
     cout << "===========================\n";
+#endif
+    
+    int incr = gaPatterns.size() / 32.0;
+    vector<vector<int> > prunedPatterns;
     
     for(int i=0; i<32; i++) {
         int index = i * incr;
         prunedPatterns.push_back(gaPatterns[index]);
-        cout << index << "\n";
         
-        std::cout << "Fitness: " << fitnessRec[index] << "\n";
+#if LOGGING
+        cout << "Pruned Pattern Index:" << index << "\n";
+        std::cout << "Pruned Pattern Fitness: " << fitnessRec[index] << "\n";
+#endif
     }
     
     prunedPatterns.push_back(inputPattern);
     
-    cout << "Generations: " << i << "\n";
+
     
     //=============================
     //Serialise output patterns
@@ -162,20 +180,30 @@ int call(const char *in, char *out, int lenOut)
     string jsonPatternOut;
     jsonPatternOut = jp.noteEventsToJson(outputPatterns);
     
+//    strcpy_s(out, lenOut, jsonPatternOut.c_str());
+    
+    
+#if LOGGING
     //Write out file
     ofstream outFile;
     outFile.open("/Users/carthach/Desktop/newPattern.json");
     outFile << jsonPatternOut;
     outFile.close();
+    timeFile.close();
+#endif
     
-//    strcpy_s(out, lenOut, jsonPatternOut.c_str());
     return 0;
 }
 
 
 int main(int argc, const char * argv[]) {
-
-    call("", "", 0);
+    
+    ifstream ifs("in.json");
+    const string in( (istreambuf_iterator<char>(ifs) ),
+                   (istreambuf_iterator<char>()    ) );
+    
+    call(in.c_str(), "", 100000);
+    
     
     return 0;
 }
