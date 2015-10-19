@@ -183,18 +183,22 @@ void simpleGA::m_bang()
         post("No target string");
         return;
     }
-    std::vector<int> bestMember = geneticAlgorithm.evolve();
-    AtomList myList(bestMember.size());
+
+    Member bestMember = geneticAlgorithm.evolve();
+    
+    std::vector<int> bestMemberGene = bestMember.gene;
+    
+    AtomList myList(bestMemberGene.size());
     
     if(geneticAlgorithm.gaType == GeneticAlgorithm::NUMERICAL) {
-        for(int i = 0; i< bestMember.size(); ++i)
-            SetInt(myList[i],bestMember[i]);
+        for(int i = 0; i< bestMemberGene.size(); ++i)
+            SetInt(myList[i],bestMemberGene[i]);
         ToOutList(0,myList);
     } else if (geneticAlgorithm.gaType == GeneticAlgorithm::ALPHANUMERICAL)
     {
         string s;
-        for(int i = 0; i< bestMember.size(); ++i)
-            s.push_back(bestMember[i]);
+        for(int i = 0; i< bestMemberGene.size(); ++i)
+            s.push_back(bestMemberGene[i]);
         ToOutString(0, s.c_str());
     }
     

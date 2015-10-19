@@ -145,6 +145,17 @@ public:
         }
     }
     
+    void rouletteSelectionUnbounded()
+    {
+        //Nature of Code - Inefficient
+        for (int i=0; i<population.size(); i++) {
+            int n = population[i].fitness * 100.0;
+
+            for(int j=0; j<n; j++)
+                matingPool.push_back(population[i]);
+        }
+    }
+    
     //Here we do roulette wheel selection to determine the pool (
     void rouletteSelection()
     {
@@ -218,7 +229,8 @@ public:
         
         //Here we create the matingPool using a selection procedure
 //        truncateSelection(0.2);
-        rouletteSelection();
+//        rouletteSelection();
+        rouletteSelectionUnbounded();
         
         //Elitism
 //        elitism(0.09);

@@ -90,6 +90,13 @@ int call(const char *in, char *out, int lenOut)
     JsonParser jp;
     jp.parseJson(in);
     
+#ifdef LOGGING
+    ifstream ifs("in.json");
+    string inTest( (istreambuf_iterator<char>(ifs) ),
+                    (istreambuf_iterator<char>()    ) );
+    jp.parseJson(inTest.c_str());
+#endif
+    
     DrumPattern drumPatternIn = jp.getPatternList();
     
     for(int i=0; i<4; i++)
@@ -132,11 +139,11 @@ int call(const char *in, char *out, int lenOut)
     cout << "===========================\n";
 #endif
     
-    int incr = generatedMembers.size() / 32.0;
+    int incr = generatedMembers.size() / 33.0;
     
     
     vector<Member> prunedMembers;
-    for(int i=0; i<32; i++) {
+    for(int i=0; i<33; i++) {
         int index = i * incr;
         prunedMembers.push_back(generatedMembers[index]);
         
@@ -162,7 +169,7 @@ int call(const char *in, char *out, int lenOut)
     
 //    //Sort both sides
     
-    int index = 16;
+    int index = 17;
     sort(prunedMembers.begin(), prunedMembers.begin()+index, GeneticAlgorithm::sortByFitness);
     sort(prunedMembers.begin()+index, prunedMembers.end(), GeneticAlgorithm::sortByFitnessDescending);
     
@@ -225,9 +232,7 @@ int call(const char *in, char *out, int lenOut)
 
 int main(int argc, const char * argv[]) {
     
-    ifstream ifs("in.json");
-    const string in( (istreambuf_iterator<char>(ifs) ),
-                   (istreambuf_iterator<char>()    ) );
+
     
     call(in.c_str(), "", 100000);
     
