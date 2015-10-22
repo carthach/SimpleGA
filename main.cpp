@@ -87,7 +87,7 @@ simpleGA::simpleGA(int argc, const t_atom* argv)
     geneticAlgorithm.mutationRate = 0.1;
     geneticAlgorithm.measure = geneticAlgorithm.HAMMING;
     targetFitness = 1.0;
-
+    
     if(argc == 3) {
         geneticAlgorithm.populationSize = GetAInt(argv[0]);
         geneticAlgorithm.mutationRate = GetAFloat(argv[1]);
@@ -136,7 +136,7 @@ void simpleGA::m_list(int argc, const t_atom *argv)
             min = val;
     }
     geneticAlgorithm = GeneticAlgorithm(newString, GeneticAlgorithm::NUMERICAL, geneticAlgorithm.measure, geneticAlgorithm.populationSize, geneticAlgorithm.mutationRate, min, max);
-
+    
     post("Number received");
 }
 
@@ -163,7 +163,7 @@ void simpleGA::m_measure(int argc, const t_atom *argv)
 {
     if(argc == 1) {
         const char* word = GetAString(argv[0]);
-
+        
         if(strcmp(word, "swap") == 0) {
             geneticAlgorithm.measure = geneticAlgorithm.SWAP;
             post("Compute fitness with swap distance");
@@ -183,7 +183,7 @@ void simpleGA::m_bang()
         post("No target string");
         return;
     }
-
+    
     Member bestMember = geneticAlgorithm.evolve();
     
     std::vector<int> bestMemberGene = bestMember.gene;

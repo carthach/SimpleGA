@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0710"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E9974E52077083C700206F68"
-               BuildableName = "simpleGA.mxo"
+               BuildableName = "xsample.mxo"
                BlueprintName = "max static"
                ReferencedContainer = "container:simpleGA.xcodeproj">
             </BuildableReference>
@@ -42,11 +42,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <PathRunnable
+         runnableDebuggingMode = "0"
+         BundleIdentifier = "com.ableton.live"
+         FilePath = "/Applications/Ableton Live 9 Suite.app">
+      </PathRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E9974E52077083C700206F68"
-            BuildableName = "simpleGA.mxo"
+            BuildableName = "xsample.mxo"
             BlueprintName = "max static"
             ReferencedContainer = "container:simpleGA.xcodeproj">
          </BuildableReference>
@@ -60,6 +65,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "E9974E52077083C700206F68"
+            BuildableName = "xsample.mxo"
+            BlueprintName = "max static"
+            ReferencedContainer = "container:simpleGA.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Development">

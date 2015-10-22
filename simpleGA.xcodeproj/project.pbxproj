@@ -7,72 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07A1FE1C1917C48A00687664 /* vecLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A1FE1B1917C48A00687664 /* vecLib.framework */; };
-		07A1FE1E1917C50E00687664 /* vecLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A1FE1B1917C48A00687664 /* vecLib.framework */; };
-		07A1FE211917C53A00687664 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A1FE1F1917C53A00687664 /* MaxAPI.framework */; };
-		07A1FE221917C53A00687664 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A1FE201917C53A00687664 /* MaxAudioAPI.framework */; };
-		07AE54BE1A403D920015E392 /* simpleGA.pd_darwin in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2AAC09D05546B4700DB518D /* simpleGA.pd_darwin */; };
-		07AE54C01A403E410015E392 /* simpleGA.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9974E53077083C700206F68 /* simpleGA.mxo */; };
-		07B0214319EAB88700B9F1F8 /* simpleGA.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9974E53077083C700206F68 /* simpleGA.mxo */; };
-		07BF559B1A3F3B91004A0F6A /* SwapDistance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BF55991A3F3B91004A0F6A /* SwapDistance.cpp */; };
-		07BF559C1A3F3B91004A0F6A /* SwapDistance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BF55991A3F3B91004A0F6A /* SwapDistance.cpp */; };
-		07BF559D1A3F3B91004A0F6A /* SwapDistance.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BF559A1A3F3B91004A0F6A /* SwapDistance.h */; };
-		07FDC1B519E703EF00F4DBE2 /* simpleGA.pd_darwin in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2AAC09D05546B4700DB518D /* simpleGA.pd_darwin */; };
+		07414FB81BD96ACD00BABC3A /* SwapDistance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07414FB61BD96ACD00BABC3A /* SwapDistance.cpp */; };
+		07414FB91BD96ACD00BABC3A /* SwapDistance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07414FB61BD96ACD00BABC3A /* SwapDistance.cpp */; };
+		07414FBE1BD96C4B00BABC3A /* GeneticAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07414FBD1BD96C4B00BABC3A /* GeneticAlgorithm.cpp */; };
+		07414FBF1BD96C4B00BABC3A /* GeneticAlgorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07414FBD1BD96C4B00BABC3A /* GeneticAlgorithm.cpp */; };
 		E98573570D9E52D300682171 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E98573560D9E52D300682171 /* main.cpp */; };
 		E98573580D9E52D300682171 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E98573560D9E52D300682171 /* main.cpp */; };
 		E99A3B770D35508600E692EF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99A3B760D35508600E692EF /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		07AE54BD1A403D6B0015E392 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = $SRCROOT/bin;
-			dstSubfolderSpec = 0;
-			files = (
-				07AE54BE1A403D920015E392 /* simpleGA.pd_darwin in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		07AE54BF1A403E370015E392 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = $SRCROOT/bin;
-			dstSubfolderSpec = 0;
-			files = (
-				07AE54C01A403E410015E392 /* simpleGA.mxo in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		07FDC1B419E703E600F4DBE2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /Users/carthach/Dev/Pd/User_Libraries;
-			dstSubfolderSpec = 0;
-			files = (
-				07FDC1B519E703EF00F4DBE2 /* simpleGA.pd_darwin in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E9974EC207708C9300206F68 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = /Users/carthach/Dev/Max/User_Libraries;
+			buildActionMask = 8;
+			dstPath = "/Library/Application Support/Cycling '74/init";
 			dstSubfolderSpec = 0;
 			files = (
-				07B0214319EAB88700B9F1F8 /* simpleGA.mxo in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07A1FE1B1917C48A00687664 /* vecLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vecLib.framework; path = /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework; sourceTree = "<absolute>"; };
-		07A1FE1F1917C53A00687664 /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = /Library/Frameworks/MaxAPI.framework; sourceTree = "<absolute>"; };
-		07A1FE201917C53A00687664 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = /Library/Frameworks/MaxAudioAPI.framework; sourceTree = "<absolute>"; };
-		07BF55991A3F3B91004A0F6A /* SwapDistance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SwapDistance.cpp; sourceTree = "<group>"; };
-		07BF559A1A3F3B91004A0F6A /* SwapDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwapDistance.h; sourceTree = "<group>"; };
-		07C33B5619E7D54D004EB6D1 /* GeneticAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneticAlgorithm.h; sourceTree = "<group>"; };
+		07414FAF1BD965FD00BABC3A /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		07414FB61BD96ACD00BABC3A /* SwapDistance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SwapDistance.cpp; sourceTree = "<group>"; };
+		07414FB71BD96ACD00BABC3A /* SwapDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwapDistance.h; sourceTree = "<group>"; };
+		07414FBB1BD96AD500BABC3A /* GeneticAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneticAlgorithm.h; sourceTree = "<group>"; };
+		07414FBD1BD96C4B00BABC3A /* GeneticAlgorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeneticAlgorithm.cpp; sourceTree = "<group>"; };
 		D2AAC09D05546B4700DB518D /* simpleGA.pd_darwin */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = simpleGA.pd_darwin; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98573560D9E52D300682171 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E9974E53077083C700206F68 /* simpleGA.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = simpleGA.mxo; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +46,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A1FE1C1917C48A00687664 /* vecLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,9 +53,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A1FE211917C53A00687664 /* MaxAPI.framework in Frameworks */,
-				07A1FE221917C53A00687664 /* MaxAudioAPI.framework in Frameworks */,
-				07A1FE1E1917C50E00687664 /* vecLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +71,7 @@
 		0867D691FE84028FC02AAC07 /* xsample */ = {
 			isa = PBXGroup;
 			children = (
+				07414FAF1BD965FD00BABC3A /* Config.xcconfig */,
 				E99A3C6B0D35525C00E692EF /* readme.txt */,
 				08FB77ACFE841707C02AAC07 /* Source */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
@@ -125,9 +83,6 @@
 		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				07A1FE1F1917C53A00687664 /* MaxAPI.framework */,
-				07A1FE201917C53A00687664 /* MaxAudioAPI.framework */,
-				07A1FE1B1917C48A00687664 /* vecLib.framework */,
 			);
 			name = "External Frameworks and Libraries";
 			sourceTree = "<group>";
@@ -135,10 +90,11 @@
 		08FB77ACFE841707C02AAC07 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				07414FBB1BD96AD500BABC3A /* GeneticAlgorithm.h */,
+				07414FBD1BD96C4B00BABC3A /* GeneticAlgorithm.cpp */,
+				07414FB61BD96ACD00BABC3A /* SwapDistance.cpp */,
+				07414FB71BD96ACD00BABC3A /* SwapDistance.h */,
 				E98573560D9E52D300682171 /* main.cpp */,
-				07C33B5619E7D54D004EB6D1 /* GeneticAlgorithm.h */,
-				07BF55991A3F3B91004A0F6A /* SwapDistance.cpp */,
-				07BF559A1A3F3B91004A0F6A /* SwapDistance.h */,
 				E99A3B760D35508600E692EF /* Info.plist */,
 			);
 			name = Source;
@@ -151,7 +107,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07BF559D1A3F3B91004A0F6A /* SwapDistance.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,8 +120,6 @@
 				D2AAC09905546B4700DB518D /* Headers */,
 				D2AAC09B05546B4700DB518D /* Frameworks */,
 				D2AAC09A05546B4700DB518D /* Sources */,
-				07FDC1B419E703E600F4DBE2 /* CopyFiles */,
-				07AE54BD1A403D6B0015E392 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -185,7 +138,6 @@
 				E9974E50077083C700206F68 /* Sources */,
 				E9974E51077083C700206F68 /* Frameworks */,
 				E9974EC207708C9300206F68 /* CopyFiles */,
-				07AE54BF1A403E370015E392 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -238,7 +190,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E98573570D9E52D300682171 /* main.cpp in Sources */,
-				07BF559B1A3F3B91004A0F6A /* SwapDistance.cpp in Sources */,
+				07414FBE1BD96C4B00BABC3A /* GeneticAlgorithm.cpp in Sources */,
+				07414FB81BD96ACD00BABC3A /* SwapDistance.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,7 +200,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E98573580D9E52D300682171 /* main.cpp in Sources */,
-				07BF559C1A3F3B91004A0F6A /* SwapDistance.cpp in Sources */,
+				07414FBF1BD96C4B00BABC3A /* GeneticAlgorithm.cpp in Sources */,
+				07414FB91BD96ACD00BABC3A /* SwapDistance.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,40 +211,31 @@
 		E9A5BC8B0A33819900AD9F03 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_EXTENSION = pd_darwin;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SYSTEM_LIBRARY_DIR)/Frameworks/Accelerate.framework/Versions/A/Frameworks",
-				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"FLEXT_SYS=2",
 				);
 				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(FLEXTINCLUDE)",
-					"$(PD)/src",
+					"$(PD-devel)/src",
+					/usr/local/include/flext,
 				);
 				INSTALL_PATH = "$(PD)/extra";
+				LIBRARY_SEARCH_PATHS = "";
 				LIBRARY_STYLE = BUNDLE;
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				OTHER_LDFLAGS = (
 					"-lflext-pd_sd",
 					"-undefined",
 					dynamic_lookup,
 				);
 				PRODUCT_NAME = simpleGA;
-				VALID_ARCHS = "i386 x86_64";
 				ZERO_LINK = YES;
 			};
 			name = Development;
@@ -298,38 +243,29 @@
 		E9A5BC8C0A33819900AD9F03 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				COPY_PHASE_STRIP = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_EXTENSION = pd_darwin;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SYSTEM_LIBRARY_DIR)/Frameworks/Accelerate.framework/Versions/A/Frameworks",
-				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"FLEXT_SYS=2",
 				);
 				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(FLEXTINCLUDE)",
 					"$(PD)/src",
+					"$(flext)/source",
 				);
 				INSTALL_PATH = "$(PD)/extra";
+				LIBRARY_SEARCH_PATHS = "$(flext)/build";
 				LIBRARY_STYLE = BUNDLE;
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				OTHER_LDFLAGS = (
 					"-lflext-pd_s",
 					"-undefined",
 					dynamic_lookup,
 				);
 				PRODUCT_NAME = simpleGA;
-				VALID_ARCHS = "i386 x86_64";
 				ZERO_LINK = NO;
 			};
 			name = Deployment;
@@ -337,35 +273,25 @@
 		E9A5BC8D0A33819900AD9F03 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_EXTENSION = pd_darwin;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SYSTEM_LIBRARY_DIR)/Frameworks/Accelerate.framework/Versions/A/Frameworks",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.cpp;
 				GCC_PREPROCESSOR_DEFINITIONS = "FLEXT_SYS=2";
 				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(FLEXTINCLUDE)",
-					"$(PD)/src",
+					"$(PDApp)/src",
+					"$(flext)/source",
 				);
 				INSTALL_PATH = "$(PD)/extra";
+				LIBRARY_SEARCH_PATHS = "$(flext)/build";
 				LIBRARY_STYLE = BUNDLE;
 				MACH_O_TYPE = mh_bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = (
 					"-bundle_loader",
 					"$(PDApp)/bin/pd",
 				);
 				PRODUCT_NAME = simpleGA;
-				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Default;
 		};
@@ -373,14 +299,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_LIBRARY_DIR)/Frameworks/Accelerate.framework/Versions/A/Frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(maxsdk)/max-includes",
+					"$(maxsdk)/msp-includes",
 				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -391,19 +316,26 @@
 				HEADER_SEARCH_PATHS = (
 					"$(maxsdk)/max-includes",
 					"$(maxsdk)/msp-includes",
-					"$(FLEXTINCLUDE)",
+					"$(flext)/source",
+					/usr/local/include/flext,
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "/Library/Application Support/Cycling 74/externals/flext";
-				LIBRARY_SEARCH_PATHS = "$(FLEXTLIB)";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				LIBRARY_STYLE = DYNAMIC;
-				OTHER_LDFLAGS = "-lflext-max_sd";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_LDFLAGS = (
+					"-lflext-max_sd",
+					"-framework",
+					MaxAPI,
+					"-framework",
+					MaxAudioAPI,
+				);
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = simpleGA;
 				SECTORDER_FLAGS = "";
-				VALID_ARCHS = "i386 x86_64";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -418,13 +350,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_LIBRARY_DIR)/Frameworks/Accelerate.framework/Versions/A/Frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(maxsdk)/max-includes",
+					"$(maxsdk)/msp-includes",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -434,19 +365,26 @@
 				HEADER_SEARCH_PATHS = (
 					"$(maxsdk)/max-includes",
 					"$(maxsdk)/msp-includes",
-					"$(FLEXTINCLUDE)",
+					"$(flext)/source",
+					/usr/local/include/flext,
 					/usr/local/include,
 				);
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "/Library/Application Support/Cycling 74/externals/flext";
-				LIBRARY_SEARCH_PATHS = "$(FLEXTLIB)";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				LIBRARY_STYLE = DYNAMIC;
-				OTHER_LDFLAGS = "-lflext-max_s";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_LDFLAGS = (
+					"-lflext-max_s",
+					"-framework",
+					MaxAPI,
+					"-framework",
+					MaxAudioAPI,
+				);
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = simpleGA;
 				SECTORDER_FLAGS = "";
-				VALID_ARCHS = "i386 x86_64";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -461,30 +399,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SYSTEM_LIBRARY_DIR)/Frameworks/Accelerate.framework/Versions/A/Frameworks",
-					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(maxsdk)/max-includes",
+					"$(maxsdk)/msp-includes",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = "FLEXT_SYS=1";
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(maxsdk)/max-includes",
 					"$(maxsdk)/msp-includes",
-					"$(FLEXTINCLUDE)",
+					"$(flext)/source",
+					/usr/local/include/flext,
 					/usr/local/include,
 				);
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "source/xsample-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Cycling 74/externals/flext";
-				LIBRARY_SEARCH_PATHS = "$(FLEXTLIB)";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				LIBRARY_STYLE = DYNAMIC;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = simpleGA;
 				SECTORDER_FLAGS = "";
-				VALID_ARCHS = "i386 x86_64";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -496,11 +434,8 @@
 		};
 		E9A5BC930A33819900AD9F03 /* Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07414FAF1BD965FD00BABC3A /* Config.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LIBRARY = "libstdc++";
-				FLEXTINCLUDE = /usr/local/include/flext;
-				FLEXTLIB = /usr/local/lib;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -509,26 +444,17 @@
 					FLEXT_USESIMD,
 				);
 				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(FLEXTINCLUDE)",
+					/usr/local/include/flext,
 					/usr/local/include,
 				);
-				LIBRARY_SEARCH_PATHS = "$(FLEXTLIB)";
-				PD = "/Applications/Pd-extended.app/Contents/Resources";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				VALID_ARCHS = "i386 x86_64";
-				maxsdk = "/Users/carthach/Dev/git/max6-sdk/c74support";
 			};
 			name = Development;
 		};
 		E9A5BC940A33819900AD9F03 /* Deployment */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07414FAF1BD965FD00BABC3A /* Config.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LIBRARY = "libstdc++";
-				FLEXTINCLUDE = /usr/local/include/flext;
-				FLEXTLIB = /usr/local/lib;
 				GCC_ALTIVEC_EXTENSIONS = YES;
 				GCC_ENABLE_SSE3_EXTENSIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -538,36 +464,21 @@
 				);
 				GCC_STRICT_ALIASING = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(FLEXTINCLUDE)",
+					/usr/local/include/flext,
 					/usr/local/include,
 				);
-				LIBRARY_SEARCH_PATHS = "$(FLEXTLIB)";
-				PD = "/Applications/Pd-extended.app/Contents/Resources";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
-				VALID_ARCHS = "i386 x86_64";
-				maxsdk = "/Users/carthach/Dev/git/max6-sdk/c74support";
 			};
 			name = Deployment;
 		};
 		E9A5BC950A33819900AD9F03 /* Default */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07414FAF1BD965FD00BABC3A /* Config.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_CXX_LIBRARY = "libstdc++";
-				FLEXTINCLUDE = /usr/local/include/flext;
-				FLEXTLIB = /usr/local/lib;
 				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(FLEXTINCLUDE)",
+					/usr/local/include/flext,
 					/usr/local/include,
 				);
-				LIBRARY_SEARCH_PATHS = "$(FLEXTLIB)";
-				PD = "/Applications/Pd-extended.app/Contents/Resources";
-				VALID_ARCHS = "i386 x86_64";
-				maxsdk = "/Users/carthach/Dev/git/max6-sdk/c74support";
 			};
 			name = Default;
 		};

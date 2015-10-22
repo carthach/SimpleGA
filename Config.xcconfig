@@ -1,0 +1,9 @@
+//
+//  Config.xcconfig
+//  template
+//
+//  Created by Cárthach Ó Nuanáin on 22/10/2015.
+//
+//
+PD = "/Applications/Pd-extended.app/Contents/Resources"
+maxsdk = "/Users/carthach/Dev/git/max-sdk/source/c74support"
