@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D2AAC09C05546B4700DB518D"
-               BuildableName = "xsample.pd_darwin"
+               BuildableName = "simpleGA.pd_darwin"
                BlueprintName = "pd static"
                ReferencedContainer = "container:simpleGA.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D2AAC09C05546B4700DB518D"
-            BuildableName = "xsample.pd_darwin"
+            BuildableName = "simpleGA.pd_darwin"
             BlueprintName = "pd static"
             ReferencedContainer = "container:simpleGA.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D2AAC09C05546B4700DB518D"
-            BuildableName = "xsample.pd_darwin"
+            BuildableName = "simpleGA.pd_darwin"
             BlueprintName = "pd static"
             ReferencedContainer = "container:simpleGA.xcodeproj">
          </BuildableReference>

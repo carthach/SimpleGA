@@ -6,7 +6,7 @@
 //
 //
 
-#include <GeneticAlgorithm.h>
+#include "GeneticAlgorithm.h"
 
 vector<vector<int> > GeneticAlgorithm::splitPattern(const vector<int>& pattern)
 {
@@ -25,21 +25,13 @@ void GeneticAlgorithm::init(vector<int> targetString, GATYPE gaType, MEASURE mea
 {
     srand(time(NULL));
     
-    this->targetString = targetString;
-        
-    if(targetString.size() == 64)
-        targetStringSplit = splitPattern(targetString);
-    
-    for(int i=0; i<targetStringSplit.size(); i++) {
-        targetSyncopation += getSyncopation(targetStringSplit[i]);
-        targetDensity += getDensity(targetStringSplit[i]);
-    }
+    targetPattern.gene = targetString;
     
     this->gaType = gaType;
     this->measure = measure;
     this->populationSize = populationSize;
-    //        this->matingPoolSize = this->populationSize;
-    this->matingPoolSize = this->populationSize*5;
+    this->matingPoolSize = this->populationSize;
+//    this->matingPoolSize = this->populationSize*5;    
     
     this->mutationRate = mutationRate;
     
@@ -50,8 +42,13 @@ void GeneticAlgorithm::init(vector<int> targetString, GATYPE gaType, MEASURE mea
         range = 94;
     }
     
-    bestFitness = 0.0f;
-    seedPopulation();
+    if(geneLength > 0) {
+        targetPattern.features = computeFeatures(targetPattern.gene, targetPattern.gene);
+        targetPatternSplit = splitPattern(targetPattern.gene);
+        
+        bestFitness = 0.0f;
+        seedPopulation();
+    }
 }
 
 //Our default constructor
@@ -90,10 +87,13 @@ void GeneticAlgorithm::seedPopulation()
             }
         }
         
-        Member member = {gene, 0.0};
+        Member member(gene);
         population.push_back(member);
+        
+//        population.push_back(targetPattern.gene);
     }
-    getFitness();
+//    getFitness();
+    getComplexFitness();
 }
 
 Member GeneticAlgorithm::crossover()
@@ -105,13 +105,14 @@ Member GeneticAlgorithm::crossover()
     Member* parent1 = &matingPool[i1];
     Member* parent2 = &matingPool[i2];
     
-    Member child;
+    vector<int> gene;;
     
     for(int i=0; i<spos;i++)
-        child.gene.push_back(parent1->gene[i]);
+        gene.push_back(parent1->gene[i]);
     for(int i=spos; i<geneLength;i++)
-        child.gene.push_back(parent2->gene[i]);
-    child.fitness = 0.0;
+        gene.push_back(parent2->gene[i]);
+    
+    Member child(gene);
     
     return child;
 }
@@ -137,16 +138,7 @@ void GeneticAlgorithm::rouletteSelectionUnbounded()
 
 //Here we do roulette wheel selection to determine the pool (
 void GeneticAlgorithm::rouletteSelection()
-{
-    //Nature of Code - Inefficient
-    //        for (int i=0; i<population.size(); i++) {
-    //            int n = population[i].fitness * 100.0;
-    //
-    //            for(int j=0; j<n; j++)
-    //                matingPool.push_back(population[i]);
-    //        }
-    
-    
+{    
     //Standard roulette wheel
     float totalFitness = 0;
     for(int i=0; i<population.size(); i++)
@@ -207,25 +199,17 @@ void GeneticAlgorithm::reproduction()
     matingPool.clear();
     
     //Here we create the matingPool using a selection procedure
-    //        truncateSelection(0.2);
-    //        rouletteSelection();
-    rouletteSelectionUnbounded();
+//    truncateSelection(0.2);
+//    rouletteSelectionUnbounded();
     
-    //Elitism
-    //        elitism(0.09);
+    //New Way
+    rouletteSelection();
+    elitism(0.09);
     
     for(int i=0; i<population.size();i++) {
         Member child = crossover();
         mutation(&child);
         population[i] = child;
-    }
-}
-
-//Compute the fitness of the entire population
-void GeneticAlgorithm::getFitness()
-{
-    for(int i=0; i<populationSize;i++) {
-        population[i].fitness = getFitness(population[i].gene, targetString, &population[i].distance);
     }
 }
 
@@ -239,14 +223,20 @@ void GeneticAlgorithm::getDensityForPopulation()
         population[i].density = getDensity(population[i].gene);
 }
 
-float GeneticAlgorithm::getDensity(const vector<int> & pattern)
+float GeneticAlgorithm::getNumberOfOnsets(const vector<int>& pattern)
 {
-    float density = std::count(pattern.begin(),pattern.end(), 1);
-    return density /= pattern.size();
+    float numberOfOnsets = 0.0f;
+
+    numberOfOnsets = std::count(pattern.begin(),pattern.end(), 1);
+    
+    return numberOfOnsets;
 }
 
-//Sorting function
-static bool sortByDensity(const Member &lhs, const Member &rhs) { return lhs.density < rhs.density; }
+
+float GeneticAlgorithm::getDensity(const vector<int>& pattern)
+{    
+    return getNumberOfOnsets(pattern) / pattern.size();
+}
 
 //Here we do the evolution stage
 Member GeneticAlgorithm::evolve()
@@ -255,14 +245,23 @@ Member GeneticAlgorithm::evolve()
     reproduction();
     
     //Fitness and sorting
-    getFitness();
-    getDensityForPopulation();
+//    getFitness();
+    
+    getComplexFitness();
+    
+//    getDensityForPopulation();
     sort(population.begin(), population.end(),sortByFitness); //Sort by fitness
     
     //Returning
     Member bestIndividual = population.back();
     bestFitness = bestIndividual.fitness;
     return bestIndividual;
+}
+
+void GeneticAlgorithm::getFitness()
+{
+    for(int i=0; i<population.size(); i++)
+        population[i].fitness = getFitness(population[i].gene, targetPattern.gene, &population[i].distance);
 }
 
 //Return the floating point distance
@@ -302,13 +301,13 @@ float GeneticAlgorithm::getSyncopation(const vector<int> &pattern)
                 beatIndex++;
             
             //Get duration
-            int duration = 0;
-            
-            int nextTime = i;
-            while(pattern[nextTime] != 1 || nextTime < pattern.size()) {
+            int duration = 1;
+            int nextTime = startTime+1;
+            while(pattern[nextTime] != 1 && nextTime < pattern.size()) {
                 duration++;
                 nextTime++;
             }
+            
             
             float distanceToBeatOnLeft = abs(startTime - beatsTicks[beatIndex])/float(beatIntervalTicks);
             float distanceToBeatOnRight = abs(startTime - beatsTicks[beatIndex+1])/float(beatIntervalTicks);
@@ -328,45 +327,83 @@ float GeneticAlgorithm::getSyncopation(const vector<int> &pattern)
         }
     }
     
-    return totalSyncopation/totalNumberOfOnsets;
+    if(totalNumberOfOnsets > 0)
+        return totalSyncopation/totalNumberOfOnsets;
+    else
+        return 0.0f;
 }
 
-float GeneticAlgorithm::getCombinedFitness(vector<int> newPattern)
+
+vector<float> GeneticAlgorithm::computeFeatures(const vector<int> &pattern, const vector<int> &targetPattern)
 {
-    vector<vector<int> > splitPatterns = splitPattern(newPattern);
+    vector<vector<int> > splitPatterns = splitPattern(pattern);
     
-    float similarity, syncopation, density;
+    vector<float> features(3, 0.0f);
     
     for(int i=0; i<splitPatterns.size(); i++) {
-        similarity += getHammingFitness(splitPatterns[i], targetStringSplit[i], NULL);
-        syncopation += (getSyncopation(splitPatterns[i]));
-        density += (getDensity(splitPatterns[i]));
+        //If we're computing the target features then put in the same for both params
+        if(&pattern != &targetPattern) {
+            int distance;
+            features[0] += getHammingDistance(splitPatterns[i], targetPatternSplit[i]);
+        }
+        if(getNumberOfOnsets(splitPatterns[i]))
+            features[1] += (getSyncopation(splitPatterns[i])/getNumberOfOnsets(splitPatterns[i]));
     }
     
-    float fitness = 0.0f;
+    features[0] /= 4.0f;
+    features[1] /= 4.0f;
     
-    return fitness;
+    features[2] = (getDensity(pattern));
+
+    return features;
 }
+
+int GeneticAlgorithm::getHammingDistance(const vector<int> &stringA, const vector<int> &stringB)
+{
+    int distance = 0;
+    for(int i=0;i<stringA.size();i++)
+        if(stringA[i] != stringB[i])
+            distance += 1;
+    return distance;
+}
+
 
 //Hamming fitness as 1/d
 float GeneticAlgorithm::getHammingFitness(const vector<int> &stringA, const vector<int> &stringB, int* distance_out)
 {
-    int distance = 0;
-    for(int i=0;i<geneLength;i++)
-        if(stringA[i] != stringB[i])
-            distance += 1;
+
+    int distance = getHammingDistance(stringA, stringB);
     
-    int correct = geneLength - distance;
+    int correct = stringA.size() - distance;
     *distance_out = distance;
-    return (float)correct / (float)geneLength;
+    
+    float result = (float)correct / (float)stringA.size();
+    
+    return  result;
 }
 
 //Directed-swap fitness as 1/d
 float GeneticAlgorithm::getSwapFitness(const vector<int> &stringA, const vector<int> &stringB)
 {
-    
     int distance = swapDistance.getDistance(stringA, stringB);
     return 1.0f / (float)(distance + 1);
+}
+
+//Compute the fitness of the entire population
+void GeneticAlgorithm::getComplexFitness()
+{
+    for(int i=0; i<population.size();i++)
+    {
+        population[i].features = computeFeatures(population[i].gene, targetPattern.gene);
+        
+        float distance = vectorDistance(population[i].features.begin(), population[i].features.end(), targetPattern.features.begin());
+        
+        float fitness = 1.0 / (distance+1);
+        
+        population[i].fitness = fitness;
+        
+//        std::cout << "fitness: " << fitness << "\n";
+    }
 }
 
 //Just get a random member from the population
@@ -374,4 +411,15 @@ vector<int> GeneticAlgorithm::getRandomMember()
 {
     int randomIndex = rand() % populationSize;
     return population[randomIndex].gene;
+}
+
+
+template<class Iter_T, class Iter2_T>
+double GeneticAlgorithm::vectorDistance(Iter_T first, Iter_T last, Iter2_T first2) {
+    double ret = 0.0;
+    while (first != last) {
+        double dist = (*first++) - (*first2++);
+        ret += dist * dist;
+    }
+    return ret > 0.0 ? sqrt(ret) : 0.0;
 }

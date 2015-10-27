@@ -7,7 +7,7 @@
 //
 #include <vector>
 #include <algorithm>
-#include <SwapDistance.h>
+#include "SwapDistance.h"
 #if FLEXT_SYS != FLEXT_SYS_MAX //Need this hack for Max/MSP
 //#include <random>
 #endif
@@ -17,9 +17,25 @@ using namespace std;
 
 struct Member {
     vector<int> gene;
-    float fitness;
-    float density;
-    int distance;
+    vector<float> features;
+    
+    float fitness = 0.0f;
+    float density = 0.0f;
+    int distance = 0;
+    
+    Member()
+    {
+        for(int i=0; i<3; i++)
+            features.push_back(0.0f);
+    }
+    
+    Member(const vector<int>& gene)
+    {
+        this->gene = gene;
+        for(int i=0; i<3; i++)
+            features.push_back(0.0f);
+    }
+
 };
 
 class GeneticAlgorithm {
@@ -47,18 +63,16 @@ public:
     float dampSyncopation = 1.0f;
     float dampDensity = 1.0f;
 
+    vector<float> featureWeights;
     
     SwapDistance swapDistance;
     
     MEASURE measure;
     
     float bestFitness;
-    
-    vector<vector<int> > targetStringSplit;
-    vector<int> targetString;
-    float targetSyncopation = 0.0f;
-    float targetDensity = 0.0f;
-    
+
+    Member targetPattern;
+    vector<vector<int> > targetPatternSplit;
     
     GATYPE gaType;
     
@@ -118,19 +132,25 @@ public:
     
     float getSyncopation(const vector<int> &pattern);
     
-
+    float getFitness(vector<int> newPattern);
     
+    vector<float> computeFeatures(const vector<int> &pattern, const vector<int> &targetPattern);
     
-    
-    float getCombinedFitness(vector<int> newPattern);
+    float getNumberOfOnsets(const vector<int>& pattern);
     
     //Hamming fitness as 1/d
+    int getHammingDistance(const vector<int> &stringA, const vector<int> &stringB);
     float getHammingFitness(const vector<int> &stringA, const vector<int> &stringB, int* distance_out);
     
     //Directed-swap fitness as 1/d
     float getSwapFitness(const vector<int> &stringA, const vector<int> &stringB);
     
+    void getComplexFitness();
+    
     vector<int> getRandomMember();
+
+    template<class Iter_T, class Iter2_T>
+    double vectorDistance(Iter_T first, Iter_T last, Iter2_T first2);
 
 };
 

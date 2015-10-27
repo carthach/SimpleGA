@@ -179,7 +179,7 @@ void simpleGA::m_measure(int argc, const t_atom *argv)
 
 void simpleGA::m_bang()
 {
-    if(geneticAlgorithm.targetString.empty()) {
+    if(geneticAlgorithm.targetPattern.gene.empty()) {
         post("No target string");
         return;
     }

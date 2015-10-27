@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E9974E52077083C700206F68"
-               BuildableName = "xsample.mxo"
+               BuildableName = "simpleGA.mxo"
                BlueprintName = "max static"
                ReferencedContainer = "container:simpleGA.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E9974E52077083C700206F68"
-            BuildableName = "xsample.mxo"
+            BuildableName = "simpleGA.mxo"
             BlueprintName = "max static"
             ReferencedContainer = "container:simpleGA.xcodeproj">
          </BuildableReference>
@@ -69,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E9974E52077083C700206F68"
-            BuildableName = "xsample.mxo"
+            BuildableName = "simpleGA.mxo"
             BlueprintName = "max static"
             ReferencedContainer = "container:simpleGA.xcodeproj">
          </BuildableReference>
