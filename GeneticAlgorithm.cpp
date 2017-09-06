@@ -291,7 +291,8 @@ float GeneticAlgorithm::getSyncopation(const vector<int> &pattern)
     
     int totalNumberOfOnsets = 0;
     
-    for(int i=0; i<pattern.size(); i++) {
+    for(int i=0; i<pattern.size(); i++)
+    {
         //If it's a note
         if(pattern[i]) {
             int startTime = i;
@@ -340,9 +341,11 @@ vector<float> GeneticAlgorithm::computeFeatures(const vector<int> &pattern, cons
     
     vector<float> features(3, 0.0f);
     
-    for(int i=0; i<splitPatterns.size(); i++) {
+    for(int i=0; i<splitPatterns.size(); i++)
+    {
         //If we're computing the target features then put in the same for both params
-        if(&pattern != &targetPattern) {
+        if(&pattern != &targetPattern)
+        {
             int distance;
             features[0] += getHammingDistance(splitPatterns[i], targetPatternSplit[i]);
         }
