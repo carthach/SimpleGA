@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07A1FE1C1917C48A00687664 /* vecLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A1FE1B1917C48A00687664 /* vecLib.framework */; };
-		07A1FE1E1917C50E00687664 /* vecLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A1FE1B1917C48A00687664 /* vecLib.framework */; };
-		07A1FE211917C53A00687664 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A1FE1F1917C53A00687664 /* MaxAPI.framework */; };
-		07A1FE221917C53A00687664 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A1FE201917C53A00687664 /* MaxAudioAPI.framework */; };
+		0723091C1F601BF500867A42 /* MaxAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0723091A1F601BF500867A42 /* MaxAPI.framework */; };
+		0723091D1F601BF500867A42 /* MaxAudioAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0723091B1F601BF500867A42 /* MaxAudioAPI.framework */; };
 		07AE54BE1A403D920015E392 /* simpleGA.pd_darwin in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2AAC09D05546B4700DB518D /* simpleGA.pd_darwin */; };
 		07AE54C01A403E410015E392 /* simpleGA.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9974E53077083C700206F68 /* simpleGA.mxo */; };
 		07B0214319EAB88700B9F1F8 /* simpleGA.mxo in CopyFiles */ = {isa = PBXBuildFile; fileRef = E9974E53077083C700206F68 /* simpleGA.mxo */; };
@@ -67,9 +65,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07A1FE1B1917C48A00687664 /* vecLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = vecLib.framework; path = /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework; sourceTree = "<absolute>"; };
-		07A1FE1F1917C53A00687664 /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = /Library/Frameworks/MaxAPI.framework; sourceTree = "<absolute>"; };
-		07A1FE201917C53A00687664 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = /Library/Frameworks/MaxAudioAPI.framework; sourceTree = "<absolute>"; };
+		072309141F601AFE00867A42 /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = "../../git/max-sdk/source/c74support/max-includes/MaxAPI.framework"; sourceTree = "<group>"; };
+		072309161F601B1800867A42 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = "../../git/max-sdk/source/c74support/msp-includes/MaxAudioAPI.framework"; sourceTree = "<group>"; };
+		0723091A1F601BF500867A42 /* MaxAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAPI.framework; path = ../../../../../Library/Frameworks/MaxAPI.framework; sourceTree = "<group>"; };
+		0723091B1F601BF500867A42 /* MaxAudioAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MaxAudioAPI.framework; path = ../../../../../Library/Frameworks/MaxAudioAPI.framework; sourceTree = "<group>"; };
 		07BF55991A3F3B91004A0F6A /* SwapDistance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SwapDistance.cpp; sourceTree = "<group>"; };
 		07BF559A1A3F3B91004A0F6A /* SwapDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwapDistance.h; sourceTree = "<group>"; };
 		07C33B5619E7D54D004EB6D1 /* GeneticAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneticAlgorithm.h; sourceTree = "<group>"; };
@@ -85,7 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A1FE1C1917C48A00687664 /* vecLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,9 +91,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A1FE211917C53A00687664 /* MaxAPI.framework in Frameworks */,
-				07A1FE221917C53A00687664 /* MaxAudioAPI.framework in Frameworks */,
-				07A1FE1E1917C50E00687664 /* vecLib.framework in Frameworks */,
+				0723091C1F601BF500867A42 /* MaxAPI.framework in Frameworks */,
+				0723091D1F601BF500867A42 /* MaxAudioAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +108,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		072309131F601AFE00867A42 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0723091A1F601BF500867A42 /* MaxAPI.framework */,
+				0723091B1F601BF500867A42 /* MaxAudioAPI.framework */,
+				072309161F601B1800867A42 /* MaxAudioAPI.framework */,
+				072309141F601AFE00867A42 /* MaxAPI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0867D691FE84028FC02AAC07 /* xsample */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +126,7 @@
 				08FB77ACFE841707C02AAC07 /* Source */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DDFF38A45A11DB9C8B /* Products */,
+				072309131F601AFE00867A42 /* Frameworks */,
 			);
 			name = xsample;
 			sourceTree = "<group>";
@@ -125,9 +134,6 @@
 		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				07A1FE1F1917C53A00687664 /* MaxAPI.framework */,
-				07A1FE201917C53A00687664 /* MaxAudioAPI.framework */,
-				07A1FE1B1917C48A00687664 /* vecLib.framework */,
 			);
 			name = "External Frameworks and Libraries";
 			sourceTree = "<group>";
@@ -289,6 +295,7 @@
 					"-undefined",
 					dynamic_lookup,
 				);
+				PD = "/Applications/Pd-0.47-1-64bit.app/Contents/Resources";
 				PRODUCT_NAME = simpleGA;
 				VALID_ARCHS = "i386 x86_64";
 				ZERO_LINK = YES;
@@ -328,6 +335,7 @@
 					"-undefined",
 					dynamic_lookup,
 				);
+				PD = "/Applications/Pd-0.47-1-64bit.app/Contents/Resources";
 				PRODUCT_NAME = simpleGA;
 				VALID_ARCHS = "i386 x86_64";
 				ZERO_LINK = NO;
@@ -364,6 +372,7 @@
 					"-bundle_loader",
 					"$(PDApp)/bin/pd",
 				);
+				PD = "/Applications/Pd-0.47-1-64bit.app/Contents/Resources";
 				PRODUCT_NAME = simpleGA;
 				VALID_ARCHS = "i386 x86_64";
 			};
@@ -372,7 +381,7 @@
 		E9A5BC8F0A33819900AD9F03 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				COPY_PHASE_STRIP = NO;
@@ -403,7 +412,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = simpleGA;
 				SECTORDER_FLAGS = "";
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 x86_64";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -411,13 +420,14 @@
 				);
 				WRAPPER_EXTENSION = mxo;
 				ZERO_LINK = YES;
+				maxsdk = "/Users/carthach/Dev/git/max-sdk/source/c74support";
 			};
 			name = Development;
 		};
 		E9A5BC900A33819900AD9F03 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				COPY_PHASE_STRIP = YES;
@@ -446,7 +456,7 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = simpleGA;
 				SECTORDER_FLAGS = "";
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 x86_64";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
@@ -454,13 +464,14 @@
 				);
 				WRAPPER_EXTENSION = mxo;
 				ZERO_LINK = NO;
+				maxsdk = "/Users/carthach/Dev/git/max-sdk/source/c74support";
 			};
 			name = Deployment;
 		};
 		E9A5BC910A33819900AD9F03 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -484,13 +495,14 @@
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = simpleGA;
 				SECTORDER_FLAGS = "";
-				VALID_ARCHS = i386;
+				VALID_ARCHS = "i386 x86_64";
 				WARNING_CFLAGS = (
 					"-Wmost",
 					"-Wno-four-char-constants",
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = mxo;
+				maxsdk = "/Users/carthach/Dev/git/max-sdk/source/c74support";
 			};
 			name = Default;
 		};
