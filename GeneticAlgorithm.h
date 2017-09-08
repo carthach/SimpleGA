@@ -247,10 +247,23 @@ public:
                 break;
         }
     }
+    
+    float getAverageFitness()
+    {
+        float averageFitness = 0.0;
+        
+        for(int i=0; i<population.size();i++)
+        {
+            averageFitness += population[i].fitness;
+        }
+        
+        return averageFitness / (float)populationSize;
+    }
         
     float getHammingFitness(const vector<int> &stringA, const vector<int> &stringB, int* distance_out)
     {
         int distance = 0;
+        
         for(int i=0;i<geneLength;i++)
             if(stringA[i] != stringB[i])
                 distance += 1;
@@ -262,7 +275,6 @@ public:
     
     float getSwapFitness(const vector<int> &stringA, const vector<int> &stringB)
     {
-        
         int distance = swap.getDistance(stringA, stringB);
         return 1.0f / float(distance + 1);
     }
